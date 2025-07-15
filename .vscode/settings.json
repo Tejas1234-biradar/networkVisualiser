@@ -1,0 +1,9 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/clang",
+    "files.associations": {
+        "*.ejs": "html",
+        "*.txt": "bibtex",
+        "iostream": "cpp"
+    },
+    "cmake.ignoreCMakeListsMissing": true
+}

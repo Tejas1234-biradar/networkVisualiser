@@ -82,7 +82,7 @@ void PacketSniffer::processPacket(const struct pcap_pkthdr *header, const u_char
     string dstIP = inet_ntoa(ipHeader->ip_dst);
 
     json packetData;//initalize a sinngle json element
-    packetData["timestamp"] = header->ts.tv_sec;
+    packetData["timestamp"] = header->ts.tv_sec + header->ts.tv_usec / 1e6;
     packetData["src_ip"] = srcIP;
     packetData["dst_ip"] = dstIP;
     packetData["length"] = header->len;

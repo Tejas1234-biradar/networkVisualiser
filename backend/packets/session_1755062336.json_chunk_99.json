@@ -1,0 +1,682 @@
+[
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.508767
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.508826
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.508892
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.508897
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.508959
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.509026
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.50903
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.519865
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.519917
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.51996
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.519982
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.520049
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.520056
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.520115
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.520181
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.521071
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.533799
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.53384
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.533894
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.533904
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.533967
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.533977
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.536332
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.536393
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.536399
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.537845
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.537909
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.537917
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.542063
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.542111
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.542149
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.546184
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.546702
+  },
+  {
+    "dst_ip": "18.172.78.74",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 34870,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.546717
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 53334,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "44.240.131.66",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.547141
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 53334,
+    "length": 270,
+    "protocol": "TCP",
+    "src_ip": "44.240.131.66",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.547141
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 53334,
+    "length": 135,
+    "protocol": "TCP",
+    "src_ip": "44.240.131.66",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.547162
+  },
+  {
+    "dst_ip": "44.240.131.66",
+    "dst_port": 443,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "10.100.8.125",
+    "src_port": 53334,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.54719
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.557959
+  },
+  {
+    "dst_ip": "10.100.8.125",
+    "dst_port": 34870,
+    "length": 1414,
+    "protocol": "TCP",
+    "src_ip": "18.172.78.74",
+    "src_port": 443,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755062390.557995
+  }
+]

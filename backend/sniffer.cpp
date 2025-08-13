@@ -9,7 +9,7 @@
 /*
 TODO:To train the Anomaly model
 TODO Make a python file which extracts data using pandas and adds it to a csv file
-!we require the following parameters 
+!we require the following parameters
 ?avg_packet_size
 ?unique_src_ips
 ?unique_dst_ips
@@ -22,31 +22,36 @@ TODO Make a python file which extracts data using pandas and adds it to a csv fi
 */
 using namespace std;
 using json = nlohmann::json;
-PacketSniffer::PacketSniffer(const string& interfaceName)//here we use the PacketSniffer:: to acess the class in our header and implement the functions
-: interface(interfaceName), handle(nullptr), packetCount(0), chunkIndex(1) {
-        /**
-         * Clears the error buffer by setting all bytes in errbuf to zero using memset.
-         * This ensures that the error buffer does not contain any garbage values before use.
-         */
+PacketSniffer::PacketSniffer(const string &interfaceName) // here we use the PacketSniffer:: to acess the class in our header and implement the functions
+    : interface(interfaceName), handle(nullptr), packetCount(0), chunkIndex(1)
+{
+    /**
+     * Clears the error buffer by setting all bytes in errbuf to zero using memset.
+     * This ensures that the error buffer does not contain any garbage values before use.
+     */
     memset(errbuf, 0, PCAP_ERRBUF_SIZE);
-    
+
     // Create packets directory if it doesn't exist
     filesystem::create_directory("packets");
-    
+
     // Initialize the session file
     baseSessionName = "packets/session_" + to_string(time(nullptr)) + ".json";
-    packets = json::array();//define a json array
+    packets = json::array(); // define a json array
 }
 
-PacketSniffer::~PacketSniffer() {//destructor
-    if (handle != nullptr) {
-        pcap_close(handle);//handle is the current capture session 
+PacketSniffer::~PacketSniffer()
+{ // destructor
+    if (handle != nullptr)
+    {
+        pcap_close(handle); // handle is the current capture session
     }
 }
 
-bool PacketSniffer::start() {
-    handle = pcap_open_live(interface.c_str(), BUFSIZ, 1, 1000, errbuf);//returns a pcap struct
-    if (handle == nullptr) {
+bool PacketSniffer::start()
+{
+    handle = pcap_open_live(interface.c_str(), BUFSIZ, 1, 1000, errbuf); // returns a pcap struct
+    if (handle == nullptr)
+    {
         cerr << "pcap_open_live failed: " << errbuf << "\n";
         return false;
     }
@@ -54,7 +59,8 @@ bool PacketSniffer::start() {
     cout << "🔍 Listening on " << interface << "...\nPress Ctrl+C to stop.\n";
 
     // Start the packet capture loop
-    if (pcap_loop(handle, 0, packetHandler, reinterpret_cast<u_char*>(this)) < 0) {
+    if (pcap_loop(handle, 0, packetHandler, reinterpret_cast<u_char *>(this)) < 0)
+    {
         cerr << "pcap_loop error\n";
         return false;
     }
@@ -62,95 +68,115 @@ bool PacketSniffer::start() {
     return true;
 }
 
-void PacketSniffer::stop() {
-    if (handle != nullptr) {
+void PacketSniffer::stop()
+{
+    if (handle != nullptr)
+    {
         pcap_breakloop(handle);
-        saveToFile();  // Save remaining packets
+        saveToFile(); // Save remaining packets
     }
 }
 
-void PacketSniffer::packetHandler(u_char *userData, const struct pcap_pkthdr *header, const u_char *packet) {
-    PacketSniffer* sniffer = reinterpret_cast<PacketSniffer*>(userData);
+void PacketSniffer::packetHandler(u_char *userData, const struct pcap_pkthdr *header, const u_char *packet)
+{
+    PacketSniffer *sniffer = reinterpret_cast<PacketSniffer *>(userData);
     sniffer->processPacket(header, packet);
 }
 
-void PacketSniffer::processPacket(const struct pcap_pkthdr *header, const u_char *packet) {
+void PacketSniffer::processPacket(const struct pcap_pkthdr *header, const u_char *packet)
+{
     const struct ip *ipHeader = (struct ip *)(packet + 14);
     int ipHeaderLen = ipHeader->ip_hl * 4;
 
     string srcIP = inet_ntoa(ipHeader->ip_src);
     string dstIP = inet_ntoa(ipHeader->ip_dst);
 
-    json packetData;//initalize a sinngle json element
+    json packetData; // initalize a sinngle json element
     packetData["timestamp"] = header->ts.tv_sec + header->ts.tv_usec / 1e6;
     packetData["src_ip"] = srcIP;
     packetData["dst_ip"] = dstIP;
     packetData["length"] = header->len;
 
-    if (ipHeader->ip_p == IPPROTO_TCP) {
+    if (ipHeader->ip_p == IPPROTO_TCP)
+    {
         const struct tcphdr *tcpHeader = (struct tcphdr *)(packet + 14 + ipHeaderLen);
         packetData["protocol"] = "TCP";
         packetData["src_port"] = ntohs(tcpHeader->th_sport);
         packetData["dst_port"] = ntohs(tcpHeader->th_dport);
-        uint8_t flags=tcpHeader->th_flags;
-packetData["tcp_flags"] = {
-    {"FIN", flags & TH_FIN},
-    {"SYN", flags & TH_SYN},
-    {"RST", flags & TH_RST},
-    {"PSH", flags & TH_PUSH},
-    {"ACK", flags & TH_ACK},
-    {"URG", flags & TH_URG}
-};
-    } else if (ipHeader->ip_p == IPPROTO_UDP) {
+        uint8_t flags = tcpHeader->th_flags;
+        packetData["tcp_flags"] = {
+            {"FIN", flags & TH_FIN},
+            {"SYN", flags & TH_SYN},
+            {"RST", flags & TH_RST},
+            {"PSH", flags & TH_PUSH},
+            {"ACK", flags & TH_ACK},
+            {"URG", flags & TH_URG}};
+    }
+    else if (ipHeader->ip_p == IPPROTO_UDP)
+    {
         const struct udphdr *udpHeader = (struct udphdr *)(packet + 14 + ipHeaderLen);
         packetData["protocol"] = "UDP";
         packetData["src_port"] = ntohs(udpHeader->uh_sport);
         packetData["dst_port"] = ntohs(udpHeader->uh_dport);
-    } else if (ipHeader->ip_p == IPPROTO_ICMP) {
+    }
+    else if (ipHeader->ip_p == IPPROTO_ICMP)
+    {
         packetData["protocol"] = "ICMP";
         const struct icmp *icmpHeader = (struct icmp *)(packet + 14 + ipHeaderLen);
         packetData["type"] = (int)icmpHeader->icmp_type;
         packetData["code"] = (int)icmpHeader->icmp_code;
-    } else {
+    }
+    else
+    {
         packetData["protocol"] = "Other";
         packetData["protocol_number"] = (int)ipHeader->ip_p;
     }
 
-    packets.push_back(packetData);//Json array
+    packets.push_back(packetData); // Json array
     packetCount++;
 
     // Save to file every 40 packets
-    if (packetCount % 40 == 0) {
+    if (packetCount % 40 == 0)
+    {
         saveToFile();
     }
 
     // Still print to console for real-time monitoring
-    cout << "\n📦 Packet:\n";
-    cout << "  Src IP: " << srcIP << "\n";
-    cout << "  Dst IP: " << dstIP << "\n";
-    cout << "  Protocol: ";
-
-    if (ipHeader->ip_p == IPPROTO_TCP) {
-        const struct tcphdr *tcpHeader = (struct tcphdr *)(packet + 14 + ipHeaderLen);
-        cout << "TCP\n";
-        cout << "  Src Port: " << ntohs(tcpHeader->th_sport) << "\n";
-        cout << "  Dst Port: " << ntohs(tcpHeader->th_dport) << "\n";
-    } else if (ipHeader->ip_p == IPPROTO_UDP) {
-        const struct udphdr *udpHeader = (struct udphdr *)(packet + 14 + ipHeaderLen);
-        cout << "UDP\n";
-        cout << "  Src Port: " << ntohs(udpHeader->uh_sport) << "\n";
-        cout << "  Dst Port: " << ntohs(udpHeader->uh_dport) << "\n";
-    } else {
-        cout << "Other (" << (int)ipHeader->ip_p << ")\n";
+    // Pretty print to stderr (so it doesn’t mix with JSON stdout)
+    cerr << "\n📦 Packet:\n";
+    cerr << "  Src IP: " << srcIP << "\n";
+    cerr << "  Dst IP: " << dstIP << "\n";
+    cerr << "  Protocol: ";
+    if (ipHeader->ip_p == IPPROTO_TCP)
+    {
+        const struct tcphdr *tcpHeader = (const struct tcphdr *)(packet + 14 + ipHeaderLen);
+        cerr << "TCP\n";
+        cerr << "  Src Port: " << ntohs(tcpHeader->th_sport) << "\n";
+        cerr << "  Dst Port: " << ntohs(tcpHeader->th_dport) << "\n";
     }
+    else if (ipHeader->ip_p == IPPROTO_UDP)
+    {
+        const struct udphdr *udpHeader = (const struct udphdr *)(packet + 14 + ipHeaderLen);
+        cerr << "UDP\n";
+        cerr << "  Src Port: " << ntohs(udpHeader->uh_sport) << "\n";
+        cerr << "  Dst Port: " << ntohs(udpHeader->uh_dport) << "\n";
+    }
+    else
+    {
+        cerr << "Other (" << (int)ipHeader->ip_p << ")\n";
+    }
+    cerr << "  Length: " << header->len << " bytes\n";
 
-    cout << "  Length: " << header->len << " bytes\n";
+    // Print JSON to stdout (for backend pipe)
+    cout << packetData.dump() << endl;
+    cout.flush();
 }
 
-void PacketSniffer::saveToFile() {
+void PacketSniffer::saveToFile()
+{
     string fileName = baseSessionName + "_chunk_" + to_string(chunkIndex++) + ".json";
     ofstream file(fileName);
     file << packets.dump(2);
     file.close();
-    packets.clear();  // Clear packets after saving
+    packets.clear(); // Clear packets after saving
 }

@@ -1,0 +1,386 @@
+[
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 53660,
+    "length": 1292,
+    "protocol": "UDP",
+    "src_ip": "74.125.130.100",
+    "src_port": 443,
+    "timestamp": 1755008220.004795
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 53660,
+    "length": 1150,
+    "protocol": "UDP",
+    "src_ip": "74.125.130.100",
+    "src_port": 443,
+    "timestamp": 1755008220.005355
+  },
+  {
+    "dst_ip": "74.125.130.100",
+    "dst_port": 443,
+    "length": 76,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 53660,
+    "timestamp": 1755008220.024443
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 53660,
+    "length": 68,
+    "protocol": "UDP",
+    "src_ip": "74.125.130.100",
+    "src_port": 443,
+    "timestamp": 1755008220.053949
+  },
+  {
+    "dst_ip": "192.168.1.8",
+    "dst_port": 8009,
+    "length": 176,
+    "protocol": "TCP",
+    "src_ip": "192.168.1.10",
+    "src_port": 40182,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755008220.266614
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.281866
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.281903
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.281956
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.282008
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.282062
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 88,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.282062
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 105,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.282062
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 88,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.282179
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 88,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.282208
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 40182,
+    "length": 176,
+    "protocol": "TCP",
+    "src_ip": "192.168.1.8",
+    "src_port": 8009,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 8,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755008220.283384
+  },
+  {
+    "dst_ip": "192.168.1.8",
+    "dst_port": 8009,
+    "length": 66,
+    "protocol": "TCP",
+    "src_ip": "192.168.1.10",
+    "src_port": 40182,
+    "tcp_flags": {
+      "ACK": 16,
+      "FIN": 0,
+      "PSH": 0,
+      "RST": 0,
+      "SYN": 0,
+      "URG": 0
+    },
+    "timestamp": 1755008220.2834
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 89,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.307981
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.395238
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.395287
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.39534
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.395402
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 88,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.395432
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.395447
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 88,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.395478
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.39549
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 90,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.39551
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.397589
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.397629
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 92,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.397683
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 92,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.397729
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.398615
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 92,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.39865
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.398671
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 92,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.39871
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.398717
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 905,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.398717
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 92,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.398756
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1494,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.424593
+  },
+  {
+    "dst_ip": "192.168.1.10",
+    "dst_port": 55731,
+    "length": 1124,
+    "protocol": "UDP",
+    "src_ip": "18.239.145.165",
+    "src_port": 443,
+    "timestamp": 1755008220.424614
+  },
+  {
+    "dst_ip": "18.239.145.165",
+    "dst_port": 443,
+    "length": 88,
+    "protocol": "UDP",
+    "src_ip": "192.168.1.10",
+    "src_port": 55731,
+    "timestamp": 1755008220.424803
+  }
+]

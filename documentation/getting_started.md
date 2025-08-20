@@ -1,10 +1,10 @@
-Here’s a clean `GETTING_STARTED.md` you can use for your project:
 
-````markdown
+
+
 # Network Visualizer - Getting Started
 
 This guide will help you set up and run the Network Visualizer project, including the packet sniffer and traceroute components.
-
+````markdown
 ---
 
 ## Requirements

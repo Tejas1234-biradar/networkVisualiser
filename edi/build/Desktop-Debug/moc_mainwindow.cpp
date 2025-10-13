@@ -39,13 +39,29 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "MainWindow",
+        "clearLayout",
+        "",
+        "QLayout*",
+        "layout",
+        "switchLayoutDashboard",
         "switchLayoutAnalytics",
-        ""
+        "switchLayoutVerbose",
+        "switchLayoutGraph"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Slot 'clearLayout'
+        QtMocHelpers::SlotData<void(QLayout *)>(1, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 },
+        }}),
+        // Slot 'switchLayoutDashboard'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'switchLayoutAnalytics'
-        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'switchLayoutVerbose'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'switchLayoutGraph'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -69,11 +85,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     auto *_t = static_cast<MainWindow *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->switchLayoutAnalytics(); break;
+        case 0: _t->clearLayout((*reinterpret_cast< std::add_pointer_t<QLayout*>>(_a[1]))); break;
+        case 1: _t->switchLayoutDashboard(); break;
+        case 2: _t->switchLayoutAnalytics(); break;
+        case 3: _t->switchLayoutVerbose(); break;
+        case 4: _t->switchLayoutGraph(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -95,14 +114,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 5;
     }
     return _id;
 }

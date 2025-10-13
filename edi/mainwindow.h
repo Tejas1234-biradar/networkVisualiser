@@ -21,6 +21,10 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
+    void clearLayout(QLayout* layout);
+    void switchLayoutDashboard();
     void switchLayoutAnalytics();
+    void switchLayoutVerbose();
+    void switchLayoutGraph();
 };
 #endif // MAINWINDOW_H

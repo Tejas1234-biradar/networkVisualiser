@@ -1,12 +1,18 @@
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFrame>
 #include <QPushButton>
 #include <QStackedWidget>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    auto *central = new QWidget(this);
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow) {
+
+    ui->setupUi(this);
+
+}
+
+/*    auto *central = new QWidget(this);
     auto *mainLayout = new QVBoxLayout(central);
 
     // --- Create stacked widget for pages ---
@@ -17,21 +23,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         auto *page = new QWidget;
         auto *layout = new QVBoxLayout(page);
 
-        // --- Top bar 1 ---
+        // --- Top bar 2 with 4 buttons ---
         auto *topBar1 = new QFrame;
         topBar1->setFrameShape(QFrame::Box);
-        topBar1->setFixedHeight(50);
+        topBar1->setFixedHeight(40);
+        auto *btnLayout = new QHBoxLayout(topBar1);
 
-        // --- Top bar 2 with 4 buttons ---
-        auto *topBar2 = new QFrame;
-        topBar2->setFrameShape(QFrame::Box);
-        topBar2->setFixedHeight(40);
-        auto *btnLayout = new QHBoxLayout(topBar2);
-
-        auto *btn1 = new QPushButton("Page 1");
-        auto *btn2 = new QPushButton("Page 2");
-        auto *btn3 = new QPushButton("Page 3");
-        auto *btn4 = new QPushButton("Page 4");
+        auto *btn1 = new QPushButton("Dashboard");
+        auto *btn2 = new QPushButton("Analytics");
+        auto *btn3 = new QPushButton("Verbose");
+        auto *btn4 = new QPushButton("Graph");
 
         btnLayout->addWidget(btn1);
         btnLayout->addWidget(btn2);
@@ -53,7 +54,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
         // Add widgets to page layout
         layout->addWidget(topBar1);
-        layout->addWidget(topBar2);
         layout->addLayout(middleLayout);
         layout->addWidget(bottom);
 
@@ -71,18 +71,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
         auto *page = new QWidget;
         auto *layout = new QVBoxLayout(page);
 
-        // --- Top bar 1 ---
+        // --- Top bar 2 with 4 buttons ---
         auto *topBar1 = new QFrame;
         topBar1->setFrameShape(QFrame::Box);
-        topBar1->setFixedHeight(50);
+        topBar1->setFixedHeight(40);
+        auto *btnLayout = new QHBoxLayout(topBar1);
 
-        // --- Top bar 2 with 4 buttons ---
-        auto *topBar2 = new QFrame;
-        topBar2->setFrameShape(QFrame::Box);
-        topBar2->setFixedHeight(40);
-        auto *btnLayout = new QHBoxLayout(topBar2);
-
-        auto *btn1 = new QPushButton("Page 1");
+        auto *btn1 = new QPushButton("Dashboard");
         auto *btn2 = new QPushButton("Page 2");
         auto *btn3 = new QPushButton("Page 3");
         auto *btn4 = new QPushButton("Page 4");
@@ -98,7 +93,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
         // Add widgets to layout
         layout->addWidget(topBar1);
-        layout->addWidget(topBar2);
         layout->addWidget(bottom);
 
         // Navigation connections
@@ -118,7 +112,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     // Add stacked widget to main layout
     mainLayout->addWidget(stack);
-    setCentralWidget(central);
-}
+    setCentralWidget(central);*/
 
 MainWindow::~MainWindow() {}

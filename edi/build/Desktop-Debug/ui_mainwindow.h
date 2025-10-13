@@ -25,17 +25,18 @@ public:
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
-    QPushButton *pushButton_4;
+    QPushButton *DashboardB;
+    QPushButton *AnalyticsB;
+    QPushButton *VerboseB;
+    QPushButton *GraphB;
+    QWidget *LayoutArea;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(986, 725);
+        MainWindow->resize(986, 463);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayoutWidget = new QWidget(centralwidget);
@@ -44,26 +45,29 @@ public:
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton_3 = new QPushButton(horizontalLayoutWidget);
-        pushButton_3->setObjectName("pushButton_3");
+        DashboardB = new QPushButton(horizontalLayoutWidget);
+        DashboardB->setObjectName("DashboardB");
 
-        horizontalLayout->addWidget(pushButton_3);
+        horizontalLayout->addWidget(DashboardB);
 
-        pushButton_2 = new QPushButton(horizontalLayoutWidget);
-        pushButton_2->setObjectName("pushButton_2");
+        AnalyticsB = new QPushButton(horizontalLayoutWidget);
+        AnalyticsB->setObjectName("AnalyticsB");
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(AnalyticsB);
 
-        pushButton = new QPushButton(horizontalLayoutWidget);
-        pushButton->setObjectName("pushButton");
+        VerboseB = new QPushButton(horizontalLayoutWidget);
+        VerboseB->setObjectName("VerboseB");
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(VerboseB);
 
-        pushButton_4 = new QPushButton(horizontalLayoutWidget);
-        pushButton_4->setObjectName("pushButton_4");
+        GraphB = new QPushButton(horizontalLayoutWidget);
+        GraphB->setObjectName("GraphB");
 
-        horizontalLayout->addWidget(pushButton_4);
+        horizontalLayout->addWidget(GraphB);
 
+        LayoutArea = new QWidget(centralwidget);
+        LayoutArea->setObjectName("LayoutArea");
+        LayoutArea->setGeometry(QRect(0, 30, 991, 431));
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -77,10 +81,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Dashboard", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Analytics", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Verbose", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Graph", nullptr));
+        DashboardB->setText(QCoreApplication::translate("MainWindow", "Dashboard", nullptr));
+        AnalyticsB->setText(QCoreApplication::translate("MainWindow", "Analytics", nullptr));
+        VerboseB->setText(QCoreApplication::translate("MainWindow", "Verbose", nullptr));
+        GraphB->setText(QCoreApplication::translate("MainWindow", "Graph", nullptr));
     } // retranslateUi
 
 };

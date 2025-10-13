@@ -19,5 +19,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void switchLayoutAnalytics();
 };
 #endif // MAINWINDOW_H

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>986</width>
-    <height>725</height>
+    <height>463</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,34 +25,44 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="DashboardB">
        <property name="text">
         <string>Dashboard</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="AnalyticsB">
        <property name="text">
         <string>Analytics</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="VerboseB">
        <property name="text">
         <string>Verbose</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="GraphB">
        <property name="text">
         <string>Graph</string>
        </property>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QWidget" name="LayoutArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>30</y>
+      <width>991</width>
+      <height>431</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

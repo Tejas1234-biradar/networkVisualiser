@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QtQuickWidgets>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWin
     connect(ui->AnalyticsB,&QPushButton::clicked,this,&MainWindow::switchLayoutAnalytics);
     connect(ui->VerboseB,&QPushButton::clicked,this,&MainWindow::switchLayoutVerbose);
     connect(ui->GraphB,&QPushButton::clicked,this,&MainWindow::switchLayoutGraph);
+    switchLayoutDashboard();
 
 }
 

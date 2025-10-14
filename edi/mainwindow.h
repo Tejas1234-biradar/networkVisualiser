@@ -26,5 +26,6 @@ private slots:
     void switchLayoutAnalytics();
     void switchLayoutVerbose();
     void switchLayoutGraph();
+    void on_MainWindow_iconSizeChanged(const QSize &iconSize);
 };
 #endif // MAINWINDOW_H

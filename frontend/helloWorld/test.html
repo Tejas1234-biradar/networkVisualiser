@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Topology Visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stats-panel {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        #network-graph {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tooltip {
+            position: absolute;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 5px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .connected { color: #4CAF50; }
+        .disconnected { color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌐 Network Topology Visualizer</h1>
+            <p>Real-time visualization of network connections and routing paths</p>
+        </div>
+
+        <div class="stats-panel">
+            <div class="stat-item">
+                <span class="stat-value" id="node-count">0</span>
+                <span class="stat-label">Nodes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="edge-count">0</span>
+                <span class="stat-label">Connections</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="path-count">0</span>
+                <span class="stat-label">Traced Paths</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="toggleLayout()">Toggle Layout</button>
+            <button onclick="resetZoom()">Reset Zoom</button>
+            <button onclick="togglePaths()">Toggle Paths</button>
+            <button onclick="fetchData()">Refresh Data</button>
+        </div>
+
+        <svg id="network-graph" width="100%" height="600"></svg>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ff6b6b;"></div>
+                <span>Local Machine</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #4ecdc4;"></div>
+                <span>Routers</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #45b7d1;"></div>
+                <span>Destinations</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #96ceb4; width: 15px; height: 3px; border-radius: 0;"></div>
+                <span>Direct Connection</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #feca57; width: 15px; height: 3px; border-radius: 0;"></div>
+                <span>Traceroute Path</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+    <div class="status" id="status">Disconnected</div>
+
+    <script>
+        // Configuration
+        const width = 1200;
+        const height = 600;
+        let showPaths = true;
+        let layoutType = 'force';
+
+        // D3 setup
+        const svg = d3.select("#network-graph")
+            .attr("width", width)
+            .attr("height", height);
+
+        const g = svg.append("g");
+
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Force simulation
+        const simulation = d3.forceSimulation()
+            .force("link", d3.forceLink().id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(30));
+
+        // Data containers
+        let nodes = [];
+        let edges = [];
+        let paths = {};
+
+        // Socket.IO connection
+        const socket = io('http://localhost:5000');
+
+        socket.on('connect', () => {
+            document.getElementById('status').innerHTML = '<span class="connected">● Connected</span>';
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', () => {
+            document.getElementById('status').innerHTML = '<span class="disconnected">● Disconnected</span>';
+            console.log('Disconnected from server');
+        });
+
+        socket.on('graph_update', (data) => {
+            console.log('Received graph update:', data);
+            updateGraph(data);
+        });
+
+        // Graph update function
+        function updateGraph(data) {
+            if (data.type === 'full') {
+                nodes = data.nodes || [];
+                edges = data.edges || [];
+                paths = data.traceroute_paths || {};
+                
+                // Update statistics
+                document.getElementById('node-count').textContent = nodes.length;
+                document.getElementById('edge-count').textContent = edges.length;
+                document.getElementById('path-count').textContent = Object.keys(paths).length;
+                
+                renderGraph();
+            } else if (data.type === 'edge') {
+                // Add new edge
+                edges.push(data.edge);
+                document.getElementById('edge-count').textContent = edges.length;
+                renderGraph();
+            }
+        }
+
+        // Render graph
+        function renderGraph() {
+            // Clear previous elements
+            g.selectAll("*").remove();
+
+            // Filter edges based on showPaths setting
+            const visibleEdges = showPaths ? edges : edges.filter(d => d.type === 'direct');
+
+            // Create links
+            const link = g.selectAll(".link")
+                .data(visibleEdges)
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("stroke", d => d.type === 'direct' ? '#96ceb4' : '#feca57')
+                .attr("stroke-width", d => Math.min(Math.log(d.packet_count + 1) * 2, 8))
+                .attr("stroke-opacity", 0.7);
+
+            // Create nodes
+            const node = g.selectAll(".node")
+                .data(nodes)
+                .enter().append("g")
+                .attr("class", "node");
+
+            // Node circles
+            node.append("circle")
+                .attr("r", d => {
+                    if (d.is_local) return 20;
+                    if (d.type === 'router') return 12;
+                    return 15;
+                })
+                .attr("fill", d => {
+                    if (d.is_local) return '#ff6b6b';
+                    if (d.type === 'router') return '#4ecdc4';
+                    return '#45b7d1';
+                })
+                .attr("stroke", "#fff")
+                .attr("stroke-width", 2);
+
+            // Node labels
+            node.append("text")
+                .text(d => {
+                    if (d.is_local) return "LOCAL";
+                    const ip = d.ip || d.id;
+                    return ip.length > 12 ? ip.substring(0, 12) + "..." : ip;
+                })
+                .attr("text-anchor", "middle")
+                .attr("dy", d => d.is_local ? 35 : 30)
+                .attr("font-size", d => d.is_local ? "12px" : "10px")
+                .attr("fill", "#fff")
+                .attr("font-weight", d => d.is_local ? "bold" : "normal");
+
+            // Tooltips
+            node.on("mouseover", (event, d) => {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.opacity = 1;
+                tooltip.style.left = (event.pageX + 10) + 'px';
+                tooltip.style.top = (event.pageY - 10) + 'px';
+                tooltip.innerHTML = `
+                    <strong>${d.ip || d.id}</strong><br>
+                    Type: ${d.type || 'unknown'}<br>
+                    Packets: ${d.packet_count || 0}<br>
+                    ${d.protocols ? 'Protocols: ' + d.protocols.join(', ') : ''}
+                `;
+            })
+            .on("mouseout", () => {
+                document.getElementById('tooltip').style.opacity = 0;
+            });
+
+            // Drag behavior
+            node.call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+            // Update simulation
+            simulation.nodes(nodes);
+            simulation.force("link").links(visibleEdges);
+
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node
+                    .attr("transform", d => `translate(${d.x},${d.y})`);
+            });
+
+            simulation.alpha(1).restart();
+        }
+
+        // Drag functions
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+
+        // Control functions
+        function toggleLayout() {
+            layoutType = layoutType === 'force' ? 'radial' : 'force';
+            
+            if (layoutType === 'radial') {
+                // Arrange nodes in concentric circles
+                const localNodes = nodes.filter(d => d.is_local);
+                const routerNodes = nodes.filter(d => d.type === 'router');
+                const otherNodes = nodes.filter(d => !d.is_local && d.type !== 'router');
+
+                // Position local nodes in center
+                localNodes.forEach((d, i) => {
+                    d.fx = width / 2;
+                    d.fy = height / 2;
+                });
+
+                // Position routers in inner circle
+                routerNodes.forEach((d, i) => {
+                    const angle = (i / routerNodes.length) * 2 * Math.PI;
+                    d.fx = width / 2 + Math.cos(angle) * 150;
+                    d.fy = height / 2 + Math.sin(angle) * 150;
+                });
+
+                // Position other nodes in outer circle
+                otherNodes.forEach((d, i) => {
+                    const angle = (i / otherNodes.length) * 2 * Math.PI;
+                    d.fx = width / 2 + Math.cos(angle) * 250;
+                    d.fy = height / 2 + Math.sin(angle) * 250;
+                });
+            } else {
+                // Free all nodes for force layout
+                nodes.forEach(d => {
+                    d.fx = null;
+                    d.fy = null;
+                });
+            }
+            simulation.alpha(1).restart();
+        }
+
+        function resetZoom() {
+            svg.transition().duration(750).call(
+                zoom.transform,
+                d3.zoomIdentity
+            );
+        }
+
+        function togglePaths() {
+            showPaths = !showPaths;
+            renderGraph();
+        }
+
+        function fetchData() {
+            fetch('/api/graph/detailed')
+                .then(response => response.json())
+                .then(data => {
+                    updateGraph({
+                        type: 'full',
+                        nodes: data.nodes,
+                        edges: data.edges,
+                        traceroute_paths: data.traceroute_paths
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Initial data fetch
+        setTimeout(fetchData, 1000);
+    </script>
+</body>
+</html>

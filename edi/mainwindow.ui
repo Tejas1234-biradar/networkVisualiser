@@ -66,8 +66,6 @@
      <widget class="QWidget" name="LayoutArea" native="true"/>
     </item>
    </layout>
-   <zorder>LayoutArea</zorder>
-   <zorder>horizontalLayoutWidget</zorder>
   </widget>
  </widget>
  <resources/>

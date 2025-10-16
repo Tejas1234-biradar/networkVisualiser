@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_QUICKWIDGETS_LIB -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1z -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
-INCPATH       = -I../../../edi -I. -I/usr/include/qt6 -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtCore -I. -I. -I/usr/lib/qt6/mkspecs/linux-g++
+INCPATH       = -I../../../edi -I. -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I. -I/usr/lib/qt6/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt6/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = edi1.0.0
 DISTDIR = /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/.tmp/edi1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/usr/lib -Wl,-rpath-link,/usr/lib
-LIBS          = $(SUBLIBS) /usr/lib/libQt6Widgets.so /usr/lib/libQt6Gui.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so /usr/lib/libQt6Core.so -lpthread -lGLX -lOpenGL   
+LIBS          = $(SUBLIBS) /usr/lib/libQt6QuickWidgets.so /usr/lib/libQt6Quick.so /usr/lib/libQt6OpenGL.so /usr/lib/libQt6Widgets.so /usr/lib/libQt6Gui.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so /usr/lib/libQt6QmlMeta.so /usr/lib/libQt6QmlModels.so /usr/lib/libQt6QmlWorkerScript.so /usr/lib/libQt6Qml.so /usr/lib/libQt6Network.so /usr/lib/libQt6Core.so -lpthread -lGLX -lOpenGL   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -57,7 +57,8 @@ SOURCES       = ../../main.cpp \
 OBJECTS       = main.o \
 		mainwindow.o \
 		moc_mainwindow.o
-DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
+DIST          = ../../main.qml \
+		/usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/common/unix.conf \
 		/usr/lib/qt6/mkspecs/common/linux.conf \
 		/usr/lib/qt6/mkspecs/common/sanitize.conf \
@@ -92,6 +93,10 @@ DIST          = /usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_examples_asset_downloader_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_fb_support_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphs.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphs_private.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_help.pri \
@@ -404,6 +409,10 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_lib_examples_asset_downloader_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_fb_support_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphs.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphs_private.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets.pri \
+		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_help.pri \
@@ -669,8 +678,16 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
 		../../edi.pro \
+		/usr/lib/libQt6QuickWidgets.prl \
+		/usr/lib/libQt6Quick.prl \
+		/usr/lib/libQt6OpenGL.prl \
 		/usr/lib/libQt6Widgets.prl \
 		/usr/lib/libQt6Gui.prl \
+		/usr/lib/libQt6QmlMeta.prl \
+		/usr/lib/libQt6QmlModels.prl \
+		/usr/lib/libQt6QmlWorkerScript.prl \
+		/usr/lib/libQt6Qml.prl \
+		/usr/lib/libQt6Network.prl \
 		/usr/lib/libQt6Core.prl
 	$(QMAKE) -o Makefile ../../edi.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 /usr/lib/qt6/mkspecs/features/spec_pre.prf:
@@ -708,6 +725,10 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_lib_examples_asset_downloader_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_fb_support_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri:
+/usr/lib/qt6/mkspecs/modules/qt_lib_graphs.pri:
+/usr/lib/qt6/mkspecs/modules/qt_lib_graphs_private.pri:
+/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets.pri:
+/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_gui.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_gui_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_help.pri:
@@ -973,8 +994,16 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/features/yacc.prf:
 /usr/lib/qt6/mkspecs/features/lex.prf:
 ../../edi.pro:
+/usr/lib/libQt6QuickWidgets.prl:
+/usr/lib/libQt6Quick.prl:
+/usr/lib/libQt6OpenGL.prl:
 /usr/lib/libQt6Widgets.prl:
 /usr/lib/libQt6Gui.prl:
+/usr/lib/libQt6QmlMeta.prl:
+/usr/lib/libQt6QmlModels.prl:
+/usr/lib/libQt6QmlWorkerScript.prl:
+/usr/lib/libQt6Qml.prl:
+/usr/lib/libQt6Network.prl:
 /usr/lib/libQt6Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../edi.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -1031,7 +1060,7 @@ compiler_moc_header_clean:
 moc_mainwindow.cpp: ../../mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

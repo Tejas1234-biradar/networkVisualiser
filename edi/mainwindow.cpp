@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QtQuickWidgets>
+#include <QtQuickWidgets/QQuickWidget>
+#include <QQmlContext>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -99,6 +100,15 @@ void MainWindow::switchLayoutVerbose(){
 
     mainLayout->addWidget(new QLabel("Packet Info"));
     mainLayout->addWidget(new QLabel("Line Graph"));
+    QQuickWidget *graphWidget = new QQuickWidget(this);
+    // Set resizing behavior
+    graphWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+
+    // Set QML source
+    graphWidget->setSource(QUrl(QStringLiteral("qrc:/GraphView.qml")));
+
+    // Add to layout
+    mainLayout->addWidget(graphWidget);
 
     ui->LayoutArea->setLayout(mainLayout);
 }

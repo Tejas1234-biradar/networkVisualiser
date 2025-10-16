@@ -82,7 +82,6 @@ public:
         verticalLayout->addWidget(LayoutArea);
 
         MainWindow->setCentralWidget(centralwidget);
-        LayoutArea->raise();
 
         retranslateUi(MainWindow);
 

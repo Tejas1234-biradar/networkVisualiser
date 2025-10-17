@@ -2,11 +2,13 @@
 #define TESTWINDOW_H
 
 #include <QWidget>
-#include "api_caller.h"
+#include <QJsonObject>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 class QLabel;
 class QPushButton;
-class ApiCaller;
+class QTextEdit;
 class WebSocketClient;
 
 class TestWindow : public QWidget {
@@ -14,11 +16,22 @@ class TestWindow : public QWidget {
 public:
     explicit TestWindow(QWidget* parent = nullptr);
 
+private slots:
+    void handleGraphData(const QString& message);
+    void fetchInitialGraph();
+    void onInitialGraphReceived(QNetworkReply* reply);
+
 private:
-    QLabel* label;
-    ApiCaller* api;
+    void processGraphData(const QJsonObject& data, const QString& source);
+    void log(const QString& message);
+
+    QLabel* statusLabel;
+    QTextEdit* logOutput;
+    QPushButton* reconnectBtn;
+    QPushButton* refreshBtn;
+    QPushButton* clearLogBtn;
     WebSocketClient* ws;
-    QPushButton* wsBtn;  // Make sure this line is here!
+    QNetworkAccessManager* networkManager;
 };
 
 #endif // TESTWINDOW_H

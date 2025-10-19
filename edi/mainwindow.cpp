@@ -100,16 +100,13 @@ void MainWindow::switchLayoutVerbose(){
 
     mainLayout->addWidget(new QLabel("Packet Info"));
     mainLayout->addWidget(new QLabel("Line Graph"));
-    QQuickWidget *graphWidget = new QQuickWidget(this);
-    // Set resizing behavior
-    graphWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
-
-    // Set QML source
-    graphWidget->setSource(QUrl(QStringLiteral("qrc:/GraphView.qml")));
+    lineGraph = new QQuickWidget(this);
+    lineGraph->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    lineGraph->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+    LineSeriesWrapper.appendPoint(2, 2);
 
     // Add to layout
-    mainLayout->addWidget(graphWidget);
-
+    mainLayout->addWidget(lineGraph);
     ui->LayoutArea->setLayout(mainLayout);
 }
 

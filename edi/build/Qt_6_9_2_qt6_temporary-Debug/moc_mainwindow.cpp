@@ -97,6 +97,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->switchLayoutAnalytics(); break;
         case 3: _t->switchLayoutVerbose(); break;
         case 4: _t->switchLayoutGraph(); break;
+
         default: ;
         }
     }

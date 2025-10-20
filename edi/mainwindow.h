@@ -31,13 +31,5 @@ private slots:
     void on_MainWindow_iconSizeChanged(const QSize &iconSize);
 };
 
-class LineSeriesWrapper : public QLineSeries {
-    Q_OBJECT
-public:
-    explicit LineSeriesWrapper(QObject* parent = nullptr) : QLineSeries(parent) {}
 
-    Q_INVOKABLE void appendPoint(qreal x, qreal y) {
-        QLineSeries::append(x, y);
-    }
-};
 #endif // MAINWINDOW_H

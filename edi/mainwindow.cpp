@@ -103,7 +103,7 @@ void MainWindow::switchLayoutVerbose(){
     lineGraph = new QQuickWidget(this);
     lineGraph->setResizeMode(QQuickWidget::SizeRootObjectToView);
     lineGraph->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
-    LineSeriesWrapper.appendPoint(2, 2);
+
 
     // Add to layout
     mainLayout->addWidget(lineGraph);

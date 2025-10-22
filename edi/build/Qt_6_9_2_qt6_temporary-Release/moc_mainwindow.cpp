@@ -97,7 +97,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->switchLayoutAnalytics(); break;
         case 3: _t->switchLayoutVerbose(); break;
         case 4: _t->switchLayoutGraph(); break;
-        case 5: _t->on_MainWindow_iconSizeChanged((*reinterpret_cast<std::add_pointer_t<QSize>>(_a[1]))); break;
         default: ;
         }
     }

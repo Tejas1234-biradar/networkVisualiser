@@ -8,7 +8,7 @@
 #include <QFrame>
 #include <QPushButton>
 #include <QStackedWidget>
-
+#include <QtCharts/QLineSeries>
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow) {

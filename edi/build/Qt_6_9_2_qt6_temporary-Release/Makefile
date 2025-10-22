@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = edi1.0.0
-DISTDIR = /home/lucifer/projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/.tmp/edi1.0.0
+DISTDIR = /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/.tmp/edi1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1 -Wl,-rpath,/usr/lib -Wl,-rpath-link,/usr/lib
 LIBS          = $(SUBLIBS) /usr/lib/libQt6QuickWidgets.so /usr/lib/libQt6Quick.so /usr/lib/libQt6OpenGL.so /usr/lib/libQt6Widgets.so /usr/lib/libQt6Gui.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so /usr/lib/libQt6QmlMeta.so /usr/lib/libQt6QmlModels.so /usr/lib/libQt6QmlWorkerScript.so /usr/lib/libQt6Qml.so /usr/lib/libQt6WebSockets.so /usr/lib/libQt6Network.so /usr/lib/libQt6Core.so -lpthread -lGLX -lOpenGL   
@@ -79,24 +79,15 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/common/g++-base.conf \
 		/usr/lib/qt6/mkspecs/common/g++-unix.conf \
 		/usr/lib/qt6/mkspecs/qconfig.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KCddb.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KChart6.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KCompactDisc.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KDSoapClient.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KDSoapServer.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KF6UserFeedbackCore.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KF6UserFeedbackWidgets.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KGantt6.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KQuickImageEditor.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KWeatherCore.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_bluetooth.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_bluetooth_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_charts.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_charts_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_chartsqml.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_chartsqml_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_concurrent.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_connectivity_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_core.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_core5compat.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_core5compat_private.pri \
@@ -118,13 +109,10 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_graphs_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_gstreamermediapluginimpl_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_help.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_help_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_httpserver.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_httpserver_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_hunspellinputmethod.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_input_support_private.pri \
@@ -158,8 +146,6 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_network_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_networkauth.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_networkauth_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_nfc.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_nfc_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_opengl.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_openglwidgets.pri \
@@ -287,11 +273,6 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_quickvectorimagehelpers_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxml.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxml_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlglobal_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlqml.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlqml_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sensors.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sensors_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sensorsquick.pri \
@@ -304,10 +285,6 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_spatialaudio_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sql_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachine.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachine_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachineqml.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachineqml_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_svg.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_svg_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_svgwidgets.pri \
@@ -354,19 +331,12 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_websockets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_websockets_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webview.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webview_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webviewquick.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webviewquick_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_wl_shell_integration_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_xml.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_xml_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_Marble.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_MimeTreeParserCore.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_MimeTreeParserWidgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroCore.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroCoro.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroDBus.pri \
@@ -375,11 +345,11 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroQuick.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroTest.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroWebSockets.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_Qt6Keychain.pri \
 		/usr/lib/qt6/mkspecs/features/qt_functions.prf \
 		/usr/lib/qt6/mkspecs/features/qt_config.prf \
 		/usr/lib/qt6/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt6/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/usr/lib/qt6/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt6/mkspecs/features/toolchain.prf \
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
@@ -431,24 +401,15 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/common/g++-base.conf \
 		/usr/lib/qt6/mkspecs/common/g++-unix.conf \
 		/usr/lib/qt6/mkspecs/qconfig.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KCddb.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KChart6.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KCompactDisc.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KDSoapClient.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KDSoapServer.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KF6UserFeedbackCore.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_KF6UserFeedbackWidgets.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KGantt6.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KQuickImageEditor.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_KWeatherCore.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_bluetooth.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_bluetooth_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_charts.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_charts_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_chartsqml.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_chartsqml_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_concurrent.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_connectivity_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_core.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_core5compat.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_core5compat_private.pri \
@@ -470,13 +431,10 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_lib_graphs_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_gstreamermediapluginimpl_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_gui_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_help.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_help_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_httpserver.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_httpserver_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_hunspellinputmethod.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_input_support_private.pri \
@@ -510,8 +468,6 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_lib_network_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_networkauth.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_networkauth_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_nfc.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_nfc_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_opengl.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_opengl_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_openglwidgets.pri \
@@ -639,11 +595,6 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_lib_quickvectorimagehelpers_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxml.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxml_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlglobal_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlqml.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlqml_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sensors.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sensors_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sensorsquick.pri \
@@ -656,10 +607,6 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_lib_spatialaudio_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sql.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_sql_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachine.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachine_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachineqml.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_statemachineqml_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_svg.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_svg_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_svgwidgets.pri \
@@ -706,19 +653,12 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_websockets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_websockets_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webview.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webview_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webviewquick.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_lib_webviewquick_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_wl_shell_integration_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_xml.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_lib_xml_private.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_Marble.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_MimeTreeParserCore.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_MimeTreeParserWidgets.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroCore.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroCoro.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroDBus.pri \
@@ -727,11 +667,11 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroQuick.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroTest.pri \
 		/usr/lib/qt6/mkspecs/modules/qt_QCoroWebSockets.pri \
-		/usr/lib/qt6/mkspecs/modules/qt_Qt6Keychain.pri \
 		/usr/lib/qt6/mkspecs/features/qt_functions.prf \
 		/usr/lib/qt6/mkspecs/features/qt_config.prf \
 		/usr/lib/qt6/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt6/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/qt6/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt6/mkspecs/features/toolchain.prf \
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
@@ -778,24 +718,15 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/common/g++-base.conf:
 /usr/lib/qt6/mkspecs/common/g++-unix.conf:
 /usr/lib/qt6/mkspecs/qconfig.pri:
-/usr/lib/qt6/mkspecs/modules/qt_KCddb.pri:
-/usr/lib/qt6/mkspecs/modules/qt_KChart6.pri:
-/usr/lib/qt6/mkspecs/modules/qt_KCompactDisc.pri:
 /usr/lib/qt6/mkspecs/modules/qt_KDSoapClient.pri:
 /usr/lib/qt6/mkspecs/modules/qt_KDSoapServer.pri:
 /usr/lib/qt6/mkspecs/modules/qt_KF6UserFeedbackCore.pri:
 /usr/lib/qt6/mkspecs/modules/qt_KF6UserFeedbackWidgets.pri:
-/usr/lib/qt6/mkspecs/modules/qt_KGantt6.pri:
-/usr/lib/qt6/mkspecs/modules/qt_KQuickImageEditor.pri:
-/usr/lib/qt6/mkspecs/modules/qt_KWeatherCore.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_bluetooth.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_bluetooth_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_charts.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_charts_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_chartsqml.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_chartsqml_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_concurrent.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_connectivity_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_core.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_core5compat.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_core5compat_private.pri:
@@ -817,13 +748,10 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_lib_graphs_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_graphswidgets_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_gstreamermediapluginimpl_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_gui.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_gui_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_help.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_help_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_httpserver.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_httpserver_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_hunspellinputmethod.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_input_support_private.pri:
@@ -857,8 +785,6 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_lib_network_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_networkauth.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_networkauth_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_nfc.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_nfc_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_opengl.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_opengl_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_openglwidgets.pri:
@@ -986,11 +912,6 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_lib_quickvectorimagehelpers_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_quickwidgets.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_quickwidgets_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_scxml.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_scxml_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlglobal_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlqml.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_scxmlqml_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_sensors.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_sensors_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_sensorsquick.pri:
@@ -1003,10 +924,6 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_lib_spatialaudio_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_sql.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_sql_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_statemachine.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_statemachine_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_statemachineqml.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_statemachineqml_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_svg.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_svg_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_svgwidgets.pri:
@@ -1053,19 +970,12 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_websockets.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_websockets_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_webview.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_webview_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_webviewquick.pri:
-/usr/lib/qt6/mkspecs/modules/qt_lib_webviewquick_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_widgets_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_wl_shell_integration_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_xml.pri:
 /usr/lib/qt6/mkspecs/modules/qt_lib_xml_private.pri:
-/usr/lib/qt6/mkspecs/modules/qt_Marble.pri:
-/usr/lib/qt6/mkspecs/modules/qt_MimeTreeParserCore.pri:
-/usr/lib/qt6/mkspecs/modules/qt_MimeTreeParserWidgets.pri:
 /usr/lib/qt6/mkspecs/modules/qt_QCoroCore.pri:
 /usr/lib/qt6/mkspecs/modules/qt_QCoroCoro.pri:
 /usr/lib/qt6/mkspecs/modules/qt_QCoroDBus.pri:
@@ -1074,11 +984,11 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/modules/qt_QCoroQuick.pri:
 /usr/lib/qt6/mkspecs/modules/qt_QCoroTest.pri:
 /usr/lib/qt6/mkspecs/modules/qt_QCoroWebSockets.pri:
-/usr/lib/qt6/mkspecs/modules/qt_Qt6Keychain.pri:
 /usr/lib/qt6/mkspecs/features/qt_functions.prf:
 /usr/lib/qt6/mkspecs/features/qt_config.prf:
 /usr/lib/qt6/mkspecs/linux-g++/qmake.conf:
 /usr/lib/qt6/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/qt6/mkspecs/features/exclusive_builds.prf:
 /usr/lib/qt6/mkspecs/features/toolchain.prf:
 /usr/lib/qt6/mkspecs/features/default_pre.prf:
@@ -1175,22 +1085,22 @@ compiler_moc_header_clean:
 moc_api_caller.cpp: ../../api_caller.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/lucifer/projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/lucifer/projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../api_caller.h -o moc_api_caller.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../api_caller.h -o moc_api_caller.cpp
 
 moc_mainwindow.cpp: ../../mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/lucifer/projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/lucifer/projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
 
 moc_testwindow.cpp: ../../testwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/lucifer/projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/lucifer/projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../testwindow.h -o moc_testwindow.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../testwindow.h -o moc_testwindow.cpp
 
 moc_websocket_client.cpp: ../../websocket_client.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/lucifer/projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/lucifer/projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../websocket_client.h -o moc_websocket_client.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../websocket_client.h -o moc_websocket_client.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

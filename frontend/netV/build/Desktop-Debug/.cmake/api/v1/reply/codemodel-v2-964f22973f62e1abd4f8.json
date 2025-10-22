@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-3cf9e3aca4766da0e7c2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "netV",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "netV::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-netV-Debug-20004597740e5851c267.json",
+					"name" : "netV",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "netV_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-netV_autogen-Debug-610a249cbf4aafe97a1a.json",
+					"name" : "netV_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "netV_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-netV_autogen_timestamp_deps-Debug-83043b6e605f949d07e9.json",
+					"name" : "netV_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mount/BIG_BOI/networkVisualiser/frontend/netV/build/Desktop-Debug",
+		"source" : "/mount/BIG_BOI/networkVisualiser/frontend/netV"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

@@ -6,24 +6,59 @@ import QtGraphs
 Rectangle {
     width: 640
     height: 480
+    color: "blue"
     property var points: []
 
     GraphsView {
         anchors.fill: parent
+        anchors.margins: 16
+        theme: GraphsTheme {
+            readonly property color c1: "#DBEB00"
+            readonly property color c2: "#373F26"
+            readonly property color c3: Qt.lighter(c2, 1.5)
+            colorScheme: GraphsTheme.ColorScheme.Dark
+            seriesColors: ["#2CDE85", "#DBEB00"]
+            grid.mainColor: c3
+            grid.subColor: c2
+            axisX.mainColor: c3
+            axisY.mainColor: c3
+            axisX.subColor: c2
+            axisY.subColor: c2
+            axisX.labelTextColor: c1
+            axisY.labelTextColor: c1
+        }
+        axisX: ValueAxis {
+            max: 5
+            tickInterval: 1
+            subTickCount: 9
+            labelDecimals: 1
+        }
+        axisY: ValueAxis {
+            max: 10
+            tickInterval: 1
+            subTickCount: 4
+            labelDecimals: 1
+        }
+
+        component Marker : Rectangle {
+            width: 16
+            height: 16
+            color: "#ffffff"
+            radius: width * 0.5
+            border.width: 4
+            border.color: "#000000"
+        }
 
         LineSeries {
-            id: lineSeries
-            color: "dodgerblue"
-            width: 2
-            axisX: ValueAxis {
-                min: 0
-                max: 10
-            }
-            axisY: ValueAxis {
-                min: 0
-                max: 10
-            }
-            points: graphModel.points
+            id: lineSeries1
+            width: 4
+            pointDelegate: Marker { }
+            XYPoint { x: 0; y: 0 }
+            XYPoint { x: 1; y: 2.1 }
+            XYPoint { x: 2; y: 3.3 }
+            XYPoint { x: 3; y: 2.1 }
+            XYPoint { x: 4; y: 4.9 }
+            XYPoint { x: 5; y: 3.0 }
         }
     }
 }

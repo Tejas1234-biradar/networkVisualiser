@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QtCharts/QLineSeries>
+#include "iostream"
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow) {
@@ -90,8 +91,10 @@ void MainWindow::switchLayoutAnalytics(){
 }
 
 void MainWindow::switchLayoutVerbose(){
+    std::cout << "In SwitchLayoutVerbose" << std::endl;
     //Destroy Old Layout
     QLayout* oldLayout = ui->LayoutArea->layout();
+    std::cout << "In SwitchLayoutVerbose:oldLayout" << oldLayout << std::endl;
     if (oldLayout) {
         clearLayout(oldLayout);
         delete oldLayout;
@@ -108,6 +111,8 @@ void MainWindow::switchLayoutVerbose(){
     // Add to layout
     mainLayout->addWidget(lineGraph);
     ui->LayoutArea->setLayout(mainLayout);
+    this->resize(500,500);
+    this->show();
 }
 
 void MainWindow::switchLayoutGraph(){

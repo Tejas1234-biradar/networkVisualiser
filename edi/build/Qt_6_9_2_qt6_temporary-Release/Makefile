@@ -56,7 +56,10 @@ SOURCES       = ../../api_caller.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
 		../../testwindow.cpp \
-		../../websocket_client.cpp moc_api_caller.cpp \
+		../../websocket_client.cpp main_qml.cpp \
+		qmlcache_loader.cpp \
+		qrc_qml_qmlcache.cpp \
+		moc_api_caller.cpp \
 		moc_mainwindow.cpp \
 		moc_testwindow.cpp \
 		moc_websocket_client.cpp
@@ -65,11 +68,15 @@ OBJECTS       = api_caller.o \
 		mainwindow.o \
 		testwindow.o \
 		websocket_client.o \
+		main_qml.o \
+		qmlcache_loader.o \
+		qrc_qml_qmlcache.o \
 		moc_api_caller.o \
 		moc_mainwindow.o \
 		moc_testwindow.o \
 		moc_websocket_client.o
 DIST          = ../../main.qml \
+		../../main_copy.qml \
 		/usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/common/unix.conf \
 		/usr/lib/qt6/mkspecs/common/linux.conf \
@@ -696,6 +703,7 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
 		../../edi.pro \
+		qml_qmlcache.qrc \
 		/usr/lib/libQt6QuickWidgets.prl \
 		/usr/lib/libQt6Quick.prl \
 		/usr/lib/libQt6OpenGL.prl \
@@ -1013,6 +1021,7 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/features/yacc.prf:
 /usr/lib/qt6/mkspecs/features/lex.prf:
 ../../edi.pro:
+qml_qmlcache.qrc:
 /usr/lib/libQt6QuickWidgets.prl:
 /usr/lib/libQt6Quick.prl:
 /usr/lib/libQt6OpenGL.prl:
@@ -1039,6 +1048,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../../main.qml $(DISTDIR)/
+	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents qml_qmlcache.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../api_caller.h ../../mainwindow.h ../../testwindow.h ../../websocket_client.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../api_caller.cpp ../../main.cpp ../../mainwindow.cpp ../../testwindow.cpp ../../websocket_client.cpp $(DISTDIR)/
@@ -1066,13 +1078,27 @@ check: first
 
 benchmark: first
 
-compiler_qmlcache_make_all:
+compiler_qmlcache_make_all: main_qml.cpp
 compiler_qmlcache_clean:
+	-$(DEL_FILE) main_qml.cpp
+main_qml.cpp: ../../main.qml \
+		/usr/lib/qt6/qmlcachegen
+	/usr/lib/qt6/qmlcachegen --resource=/home/plag/Projects/networkVisualiser/edi/qml.qrc -o main_qml.cpp ../../main.qml
+
 compiler_qmlcache_loader_make_all: qmlcache_loader.cpp
 compiler_qmlcache_loader_clean:
 	-$(DEL_FILE) qmlcache_loader.cpp
-compiler_rcc_make_all:
+qmlcache_loader.cpp: ../../qml.qrc /usr/lib/qt6/qmlcachegen
+	/usr/lib/qt6/qmlcachegen --resource-file-mapping=/home/plag/Projects/networkVisualiser/edi/qml.qrc=/home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/qml_qmlcache.qrc -o qmlcache_loader.cpp ../../qml.qrc
+
+compiler_rcc_make_all: qrc_qml_qmlcache.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_qml_qmlcache.cpp
+qrc_qml_qmlcache.cpp: qml_qmlcache.qrc \
+		/usr/lib/qt6/rcc \
+		../../main.qml
+	/usr/lib/qt6/rcc -name qml_qmlcache qml_qmlcache.qrc -o qrc_qml_qmlcache.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -1119,7 +1145,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_qmlcache_clean compiler_qmlcache_loader_clean compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1140,6 +1166,15 @@ testwindow.o: ../../testwindow.cpp ../../testwindow.h \
 
 websocket_client.o: ../../websocket_client.cpp ../../websocket_client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o websocket_client.o ../../websocket_client.cpp
+
+main_qml.o: main_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_qml.o main_qml.cpp
+
+qmlcache_loader.o: qmlcache_loader.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qmlcache_loader.o qmlcache_loader.cpp
+
+qrc_qml_qmlcache.o: qrc_qml_qmlcache.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml_qmlcache.o qrc_qml_qmlcache.cpp
 
 moc_api_caller.o: moc_api_caller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_api_caller.o moc_api_caller.cpp

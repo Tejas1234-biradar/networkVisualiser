@@ -2,5 +2,6 @@
 <RCC>
     <qresource prefix="/">
         <file alias="main.qml">../../main.qml</file>
+        <file alias="MyItem.qml">../../MyItem.qml</file>
     </qresource>
 </RCC>

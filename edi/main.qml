@@ -2,12 +2,10 @@ import QtQuick 2.15
 import QtGraphs
 
 
-
-Rectangle {
-    width: 640
-    height: 480
-    color: "blue"
-    property var points: []
+Item {
+    id:graphView
+    width: 100
+    property var dataPoints:[]
 
     GraphsView {
         anchors.fill: parent
@@ -50,15 +48,27 @@ Rectangle {
         }
 
         LineSeries {
-            id: lineSeries1
+            id: series
+            name:"Data"
             width: 4
             pointDelegate: Marker { }
-            XYPoint { x: 0; y: 0 }
-            XYPoint { x: 1; y: 2.1 }
-            XYPoint { x: 2; y: 3.3 }
-            XYPoint { x: 3; y: 2.1 }
-            XYPoint { x: 4; y: 4.9 }
-            XYPoint { x: 5; y: 3.0 }
+            // XYPoint { x: 0; y: 0 }
+            // XYPoint { x: 1; y: 2.1 }
+            // XYPoint { x: 2; y: 3.3 }
+            // XYPoint { x: 3; y: 2.1 }
+            // XYPoint { x: 4; y: 4.9 }
+            // XYPoint { x: 5; y: 3.0 }
+
+            Component.onCompleted: {
+                console.log("graphView.dataPoints length:" + graphView.dataPoints.length);
+                for( var i=0 ; i < graphView.dataPoints.length ; i++ ) {
+                    var pt = graphView.dataPoints[i];
+                    append(pt.x, pt.y);
+                }
+            }
         }
     }
+
 }
+
+

@@ -20,7 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QQuickWidget *lineGraph;
+    QQuickWidget *lineGraphQmlWidget;
 
 private slots:
     void clearLayout(QLayout* layout);

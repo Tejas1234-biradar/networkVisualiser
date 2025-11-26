@@ -16,7 +16,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_QUICKWIDGETS_LIB -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_WEBSOCKETS_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
-CXXFLAGS      = -pipe -O2 -std=gnu++1z -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
+CXXFLAGS      = -pipe -O2 -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
 INCPATH       = -I../../../edi -I. -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I. -I/usr/lib/qt6/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt6/bin/qmake
 DEL_FILE      = rm -f
@@ -52,31 +52,35 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../api_caller.cpp \
+SOURCES       = ../../dataservice.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
 		../../testwindow.cpp \
-		../../websocket_client.cpp main_qml.cpp \
+		../../websocket_client.cpp edi_qmltyperegistrations.cpp \
 		qmlcache_loader.cpp \
 		qrc_qml_qmlcache.cpp \
-		moc_api_caller.cpp \
+		moc_dataservice.cpp \
 		moc_mainwindow.cpp \
 		moc_testwindow.cpp \
-		moc_websocket_client.cpp
-OBJECTS       = api_caller.o \
+		moc_websocket_client.cpp \
+		MyItem_qml.cpp \
+		main_qml.cpp
+OBJECTS       = dataservice.o \
 		main.o \
 		mainwindow.o \
 		testwindow.o \
 		websocket_client.o \
-		main_qml.o \
+		edi_qmltyperegistrations.o \
 		qmlcache_loader.o \
 		qrc_qml_qmlcache.o \
-		moc_api_caller.o \
+		moc_dataservice.o \
 		moc_mainwindow.o \
 		moc_testwindow.o \
-		moc_websocket_client.o
-DIST          = ../../main.qml \
-		../../main_copy.qml \
+		moc_websocket_client.o \
+		MyItem_qml.o \
+		main_qml.o
+DIST          = ../../MyItem.qml \
+		../../main.qml \
 		/usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/common/unix.conf \
 		/usr/lib/qt6/mkspecs/common/linux.conf \
@@ -362,6 +366,8 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
 		/usr/lib/qt6/mkspecs/features/resolve_config.prf \
 		/usr/lib/qt6/mkspecs/features/default_post.prf \
+		/usr/lib/qt6/mkspecs/features/qmltypes.prf \
+		/usr/lib/qt6/mkspecs/features/metatypes.prf \
 		/usr/lib/qt6/mkspecs/features/resources_functions.prf \
 		/usr/lib/qt6/mkspecs/features/qtquickcompiler.prf \
 		/usr/lib/qt6/mkspecs/features/warn_on.prf \
@@ -380,10 +386,10 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
-		../../../../edi.pro ../../api_caller.h \
+		../../../../edi.pro ../../dataservice.h \
 		../../mainwindow.h \
 		../../testwindow.h \
-		../../websocket_client.h ../../api_caller.cpp \
+		../../websocket_client.h ../../dataservice.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
 		../../testwindow.cpp \
@@ -396,7 +402,7 @@ TARGET        = edi
 first: all
 ####### Build rules
 
-edi: ui_mainwindow.h $(OBJECTS)  
+edi: edi_metatypes.json ui_mainwindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/mkspecs/features/spec_pre.prf \
@@ -684,6 +690,8 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
 		/usr/lib/qt6/mkspecs/features/resolve_config.prf \
 		/usr/lib/qt6/mkspecs/features/default_post.prf \
+		/usr/lib/qt6/mkspecs/features/qmltypes.prf \
+		/usr/lib/qt6/mkspecs/features/metatypes.prf \
 		/usr/lib/qt6/mkspecs/features/resources_functions.prf \
 		/usr/lib/qt6/mkspecs/features/qtquickcompiler.prf \
 		/usr/lib/qt6/mkspecs/features/warn_on.prf \
@@ -1002,6 +1010,8 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/features/default_pre.prf:
 /usr/lib/qt6/mkspecs/features/resolve_config.prf:
 /usr/lib/qt6/mkspecs/features/default_post.prf:
+/usr/lib/qt6/mkspecs/features/qmltypes.prf:
+/usr/lib/qt6/mkspecs/features/metatypes.prf:
 /usr/lib/qt6/mkspecs/features/resources_functions.prf:
 /usr/lib/qt6/mkspecs/features/qtquickcompiler.prf:
 /usr/lib/qt6/mkspecs/features/warn_on.prf:
@@ -1048,12 +1058,17 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../main.qml $(DISTDIR)/
+	$(COPY_FILE) --parents edi_metatypes.json $(DISTDIR)/
+	$(COPY_FILE) --parents edi_metatypes.json $(DISTDIR)/
+	$(COPY_FILE) --parents ../../dataservice.h ../../mainwindow.h ../../testwindow.h ../../websocket_client.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents qml_qmlcache.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../../dataservice.h ../../mainwindow.h ../../testwindow.h ../../websocket_client.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../dataservice.cpp ../../main.cpp ../../mainwindow.cpp ../../testwindow.cpp ../../websocket_client.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents moc_.cpp.json moc_dataservice.cpp.json moc_mainwindow.cpp.json moc_testwindow.cpp.json moc_websocket_client.cpp.json $(DISTDIR)/
+	$(COPY_FILE) --parents ../../MyItem.qml ../../main.qml $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.h ../../mainwindow.h ../../testwindow.h ../../websocket_client.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.cpp ../../main.cpp ../../mainwindow.cpp ../../testwindow.cpp ../../websocket_client.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../dataservice.cpp ../../main.cpp ../../mainwindow.cpp ../../testwindow.cpp ../../websocket_client.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.ui $(DISTDIR)/
 
 
@@ -1078,12 +1093,42 @@ check: first
 
 benchmark: first
 
-compiler_qmlcache_make_all: main_qml.cpp
-compiler_qmlcache_clean:
-	-$(DEL_FILE) main_qml.cpp
-main_qml.cpp: ../../main.qml \
-		/usr/lib/qt6/qmlcachegen
-	/usr/lib/qt6/qmlcachegen --resource=/home/plag/Projects/networkVisualiser/edi/qml.qrc -o main_qml.cpp ../../main.qml
+compiler_qmltyperegistrar_compiler_make_all: edi_qmltyperegistrations.cpp
+compiler_qmltyperegistrar_compiler_clean:
+	-$(DEL_FILE) edi_qmltyperegistrations.cpp
+edi_qmltyperegistrations.cpp: edi_metatypes.json 
+	/usr/lib/qt6/qmltyperegistrar --generate-qmltypes=edi.qmltypes --import-name=DataService --major-version=1 --minor-version=0 -o edi_qmltyperegistrations.cpp edi_metatypes.json
+
+compiler_qmltyperegistrar_qmltypes_make_all: edi.qmltypes
+compiler_qmltyperegistrar_qmltypes_clean:
+	-$(DEL_FILE) edi.qmltypes
+edi.qmltypes: edi_metatypes.json \
+		edi_qmltyperegistrations.cpp
+	
+
+
+compiler_moc_json_header_make_all: moc_dataservice.cpp.json moc_mainwindow.cpp.json moc_testwindow.cpp.json moc_websocket_client.cpp.json
+compiler_moc_json_header_clean:
+	-$(DEL_FILE) moc_dataservice.cpp.json moc_mainwindow.cpp.json moc_testwindow.cpp.json moc_websocket_client.cpp.json
+moc_dataservice.cpp.json: ../../dataservice.h \
+		moc_dataservice.cpp
+	
+
+
+moc_mainwindow.cpp.json: ../../mainwindow.h \
+		moc_mainwindow.cpp
+	
+
+
+moc_testwindow.cpp.json: ../../testwindow.h \
+		moc_testwindow.cpp
+	
+
+
+moc_websocket_client.cpp.json: ../../websocket_client.h \
+		moc_websocket_client.cpp
+	
+
 
 compiler_qmlcache_loader_make_all: qmlcache_loader.cpp
 compiler_qmlcache_loader_clean:
@@ -1096,40 +1141,64 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml_qmlcache.cpp
 qrc_qml_qmlcache.cpp: qml_qmlcache.qrc \
 		/usr/lib/qt6/rcc \
+		../../MyItem.qml \
 		../../main.qml
 	/usr/lib/qt6/rcc -name qml_qmlcache qml_qmlcache.qrc -o qrc_qml_qmlcache.cpp
+
+compiler_moc_header_make_all: moc_dataservice.cpp moc_mainwindow.cpp moc_testwindow.cpp moc_websocket_client.cpp
+compiler_moc_header_clean:
+	-$(DEL_FILE) moc_dataservice.cpp moc_mainwindow.cpp moc_testwindow.cpp moc_websocket_client.cpp
+moc_dataservice.cpp: ../../dataservice.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../dataservice.h -o moc_dataservice.cpp
+
+moc_mainwindow.cpp: ../../mainwindow.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../mainwindow.h -o moc_mainwindow.cpp
+
+moc_testwindow.cpp: ../../testwindow.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../testwindow.h -o moc_testwindow.cpp
+
+moc_websocket_client.cpp: ../../websocket_client.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../websocket_client.h -o moc_websocket_client.cpp
+
+compiler_moc_objc_header_make_all:
+compiler_moc_objc_header_clean:
+compiler_moc_json_source_make_all:
+compiler_moc_json_source_clean:
+compiler_moc_collect_json_make_all: edi_metatypes.json
+compiler_moc_collect_json_clean:
+	-$(DEL_FILE) edi_metatypes.json
+edi_metatypes.json: moc_.cpp.json \
+		moc_dataservice.cpp.json \
+		moc_mainwindow.cpp.json \
+		moc_testwindow.cpp.json \
+		moc_websocket_client.cpp.json 
+	/usr/lib/qt6/moc --collect-json -o edi_metatypes.json moc_.cpp.json moc_dataservice.cpp.json moc_mainwindow.cpp.json moc_testwindow.cpp.json moc_websocket_client.cpp.json
+
+compiler_qmlcache_make_all: MyItem_qml.cpp main_qml.cpp
+compiler_qmlcache_clean:
+	-$(DEL_FILE) MyItem_qml.cpp main_qml.cpp
+MyItem_qml.cpp: ../../MyItem.qml \
+		/usr/lib/qt6/qmlcachegen
+	/usr/lib/qt6/qmlcachegen --resource=/home/plag/Projects/networkVisualiser/edi/qml.qrc -o MyItem_qml.cpp ../../MyItem.qml
+
+main_qml.cpp: ../../main.qml \
+		/usr/lib/qt6/qmlcachegen
+	/usr/lib/qt6/qmlcachegen --resource=/home/plag/Projects/networkVisualiser/edi/qml.qrc -o main_qml.cpp ../../main.qml
 
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/qt6/mkspecs/features/data/dummy.cpp
-	g++ -pipe -O2 -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt6/mkspecs/features/data/dummy.cpp
+	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt6/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_api_caller.cpp moc_mainwindow.cpp moc_testwindow.cpp moc_websocket_client.cpp
-compiler_moc_header_clean:
-	-$(DEL_FILE) moc_api_caller.cpp moc_mainwindow.cpp moc_testwindow.cpp moc_websocket_client.cpp
-moc_api_caller.cpp: ../../api_caller.h \
-		moc_predefs.h \
-		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../api_caller.h -o moc_api_caller.cpp
-
-moc_mainwindow.cpp: ../../mainwindow.h \
-		moc_predefs.h \
-		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
-
-moc_testwindow.cpp: ../../testwindow.h \
-		moc_predefs.h \
-		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../testwindow.h -o moc_testwindow.cpp
-
-moc_websocket_client.cpp: ../../websocket_client.h \
-		moc_predefs.h \
-		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Release/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../websocket_client.h -o moc_websocket_client.cpp
-
-compiler_moc_objc_header_make_all:
-compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
 compiler_uic_make_all: ui_mainwindow.h
@@ -1145,12 +1214,12 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_qmlcache_clean compiler_qmlcache_loader_clean compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_qmltyperegistrar_compiler_clean compiler_qmltyperegistrar_qmltypes_clean compiler_moc_json_header_clean compiler_qmlcache_loader_clean compiler_rcc_clean compiler_moc_header_clean compiler_moc_collect_json_clean compiler_qmlcache_clean compiler_moc_predefs_clean compiler_uic_clean 
 
 ####### Compile
 
-api_caller.o: ../../api_caller.cpp ../../api_caller.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o api_caller.o ../../api_caller.cpp
+dataservice.o: ../../dataservice.cpp ../../dataservice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dataservice.o ../../dataservice.cpp
 
 main.o: ../../main.cpp ../../mainwindow.h \
 		../../testwindow.h
@@ -1167,8 +1236,8 @@ testwindow.o: ../../testwindow.cpp ../../testwindow.h \
 websocket_client.o: ../../websocket_client.cpp ../../websocket_client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o websocket_client.o ../../websocket_client.cpp
 
-main_qml.o: main_qml.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_qml.o main_qml.cpp
+edi_qmltyperegistrations.o: edi_qmltyperegistrations.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o edi_qmltyperegistrations.o edi_qmltyperegistrations.cpp
 
 qmlcache_loader.o: qmlcache_loader.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qmlcache_loader.o qmlcache_loader.cpp
@@ -1176,8 +1245,8 @@ qmlcache_loader.o: qmlcache_loader.cpp
 qrc_qml_qmlcache.o: qrc_qml_qmlcache.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml_qmlcache.o qrc_qml_qmlcache.cpp
 
-moc_api_caller.o: moc_api_caller.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_api_caller.o moc_api_caller.cpp
+moc_dataservice.o: moc_dataservice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dataservice.o moc_dataservice.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -1187,6 +1256,12 @@ moc_testwindow.o: moc_testwindow.cpp
 
 moc_websocket_client.o: moc_websocket_client.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_websocket_client.o moc_websocket_client.cpp
+
+MyItem_qml.o: MyItem_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MyItem_qml.o MyItem_qml.cpp
+
+main_qml.o: main_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_qml.o main_qml.cpp
 
 ####### Install
 

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QtQuickWidgets/QQuickWidget>
+#include <QQuickView>
 #include <QQmlContext>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -103,16 +104,44 @@ void MainWindow::switchLayoutVerbose(){
 
     mainLayout->addWidget(new QLabel("Packet Info"));
     mainLayout->addWidget(new QLabel("Line Graph"));
-    lineGraph = new QQuickWidget(this);
-    lineGraph->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    lineGraph->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+    //lineGraphQmlWidget = new QQuickWidget(this);
+    //lineGraphQmlWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    //lineGraphQmlWidget->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    //QQuickItem *qQuickItem = lineGraphQmlWidget->rootObject();
+
+
+    // QVariantList points ;
+    // points
+    //     << QVariantMap {{ "x",0}, {"y",1}}
+    //     << QVariantMap {{ "x",1}, {"y",3}}
+    //     << QVariantMap {{ "x",2}, {"y",2}};
+
+    // lineGraphQmlWidget->setProperty("dataPoints",points);
+
+
+    // Using QQuickView
+    // QQuickView view;
+    // view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+    // view.show();
+    // QObject *object = view.findChild("graphView");
+    // QQuickItem *item = qobject_cast<QQuickItem*>(object);
+    // item->setWidth(500);
+
+    // object->setProperty("width", 500);
+    // QQmlProperty(object, "width").write(500);
 
 
     // Add to layout
-    mainLayout->addWidget(lineGraph);
+    //mainLayout->addWidget(lineGraphQmlWidget);
+    QQuickWidget *qmlWidget = new QQuickWidget;
+
+    qmlWidget->setSource(QUrl(QStringLiteral("qrc:/MyItem.qml")));
+    //setCentralWidget(qmlWidget);
+    mainLayout->addWidget(qmlWidget);
     ui->LayoutArea->setLayout(mainLayout);
-    this->resize(500,500);
-    this->show();
+    //this->resize(500,500);
+    //this->show();
 }
 
 void MainWindow::switchLayoutGraph(){

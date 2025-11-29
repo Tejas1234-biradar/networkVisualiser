@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QtQuickWidgets/QQuickWidget>
 #include <QQuickView>
+#include <QDebug>
 #include <QQmlContext>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -49,20 +50,7 @@ void MainWindow::switchLayoutDashboard(){
     mainLayout->addWidget(new QLabel("Public IP | Private IP | Hostname | NIC"));
 
     //Middle Row:
-    QHBoxLayout* middleRow = new QHBoxLayout;
-
-    //Left Box of Middle Row:
-    QVBoxLayout* leftColumn= new QVBoxLayout;
-    leftColumn->addWidget(new QLabel("Port Map"));
-    middleRow->addLayout(leftColumn);
-
-    //RIght Box of Middle Row:
-    QVBoxLayout* rightColumn = new QVBoxLayout;
-    rightColumn->addWidget(new QLabel("Network Topography Graph"));
-    middleRow->addLayout(rightColumn);
-
-    //Adding Middle Row to mainLayout:
-    mainLayout->addLayout(middleRow);
+    mainLayout->addWidget(new QLabel("Network Topography Graph"));
 
     //Bottom Box:
     mainLayout->addWidget(new QLabel("Anamoly Detection"));
@@ -80,7 +68,7 @@ void MainWindow::switchLayoutAnalytics(){
     QVBoxLayout* mainLayout = new QVBoxLayout;
 
     // Top area: Port Map
-    mainLayout->addWidget(new QLabel("Port Map"));
+    mainLayout->addWidget(new QLabel("Packet Info"));
 
     // Bottom area: Heat Map/Pie chart
     QHBoxLayout* bottomRow = new QHBoxLayout;
@@ -102,8 +90,8 @@ void MainWindow::switchLayoutVerbose(){
     }
     QVBoxLayout* mainLayout = new QVBoxLayout;
 
-    mainLayout->addWidget(new QLabel("Packet Info"));
-    mainLayout->addWidget(new QLabel("Line Graph"));
+
+
     //lineGraphQmlWidget = new QQuickWidget(this);
     //lineGraphQmlWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     //lineGraphQmlWidget->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
@@ -126,22 +114,15 @@ void MainWindow::switchLayoutVerbose(){
     // view.show();
     // QObject *object = view.findChild("graphView");
     // QQuickItem *item = qobject_cast<QQuickItem*>(object);
-    // item->setWidth(500);
 
-    // object->setProperty("width", 500);
-    // QQmlProperty(object, "width").write(500);
-
-
-    // Add to layout
-    //mainLayout->addWidget(lineGraphQmlWidget);
+    QVBoxLayout* LineGraph = new QVBoxLayout;
     QQuickWidget *qmlWidget = new QQuickWidget;
-
-    qmlWidget->setSource(QUrl(QStringLiteral("qrc:/MyItem.qml")));
-    //setCentralWidget(qmlWidget);
-    mainLayout->addWidget(qmlWidget);
+    qDebug() << "In Verbose Layout after QuickWidget Creation";
+    qmlWidget->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+    LineGraph->addWidget(new QLabel("LineGraph"));
+    LineGraph->addWidget(qmlWidget);
+    mainLayout->addLayout(LineGraph);
     ui->LayoutArea->setLayout(mainLayout);
-    //this->resize(500,500);
-    //this->show();
 }
 
 void MainWindow::switchLayoutGraph(){

@@ -11,6 +11,7 @@ QML_IMPORT_MAJOR_VERSION = 1
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    anomalywidget.cpp \
     api_caller.cpp \
     dataservice.cpp \
     graphNode.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     zoomgraphicsview.cpp
 
 HEADERS += \
+    anomalywidget.h \
     api_caller.h \
     dataservice.h \
     graphNode.h \

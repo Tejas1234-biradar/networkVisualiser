@@ -89,10 +89,10 @@ def predict_malicious_packet_endpoint():
                     "error": "duration must be positive"
                 }), 400
                 
-            if not 1 <= dst_port <= 65535:
+            if not 0 <= dst_port <= 65535:
                 return jsonify({
                     "status": "error",
-                    "error": "dst_port must be between 1 and 65535"
+                    "error": "dst_port must be between 0 and 65535"
                 }), 400
                 
             if protocol not in [1, 6, 17]:

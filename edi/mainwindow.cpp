@@ -4,6 +4,7 @@
 #include "verbosewidget.h"
 #include "linegraphwindow.h"
 #include "graphWindow.h"
+#include "anomalywidget.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -55,16 +56,19 @@ void MainWindow::createDashboardPage(NavbarWidget *navbar) {
 void MainWindow::createAnalyticsPage(NavbarWidget *navbar) {
     QWidget *analyticsPage = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout(analyticsPage);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
 
-    // Top area: Port Map
-    layout->addWidget(new QLabel("Packet Info"));
+    // Create the anomaly detection widget
+    AnomalyWidget *anomalyWidget = new AnomalyWidget();
 
-    // Bottom area: Heat Map/Pie chart
-    QHBoxLayout *bottomRow = new QHBoxLayout;
-    bottomRow->addWidget(new QLabel("Heat Map/Pie chart (Protocol)"));
-    layout->addLayout(bottomRow);
+    // Start monitoring packets every 3 seconds
+    anomalyWidget->startMonitoring("http://localhost:5000/api/packets/stream", 3000);
+
+    layout->addWidget(anomalyWidget);
 
     m_analyticsIndex = navbar->addPage(analyticsPage);
+    m_anomalyWidget = anomalyWidget;
 }
 
 void MainWindow::createVerbosePage(NavbarWidget *navbar) {

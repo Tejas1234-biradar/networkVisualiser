@@ -10,7 +10,8 @@ QT_END_NAMESPACE
 class NavbarWidget;
 class VerboseWidget;
 class LineGraphWindow;
-class GraphWindow;  // Add forward declaration
+class GraphWindow;
+class AnomalyWidget;  // Add forward declaration
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -44,6 +45,7 @@ private:
     VerboseWidget *m_verboseWidget;
     LineGraphWindow *m_lineGraphWidget;  // Fixed variable name
     GraphWindow *m_graphWidget;  // Add GraphWindow reference
+    AnomalyWidget *m_anomalyWidget;  // Add AnomalyWidget reference
 };
 
 #endif // MAINWINDOW_H

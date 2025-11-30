@@ -17,7 +17,8 @@ public:
 signals:
     void responseReceived(const QString& data);
     void errorOccurred(const QString& message);
-
+public slots:
+    void post(const QString &url, const QString &jsonData);
 private slots:
     void onReplyFinished(QNetworkReply* reply);
 

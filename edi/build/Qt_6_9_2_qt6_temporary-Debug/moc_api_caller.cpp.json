@@ -35,6 +35,23 @@
             ],
             "slots": [
                 {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "url",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "jsonData",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 2,
+                    "lineNumber": 21,
+                    "name": "post",
+                    "returnType": "void"
+                },
+                {
                     "access": "private",
                     "arguments": [
                         {
@@ -42,8 +59,8 @@
                             "type": "QNetworkReply*"
                         }
                     ],
-                    "index": 2,
-                    "lineNumber": 22,
+                    "index": 3,
+                    "lineNumber": 23,
                     "name": "onReplyFinished",
                     "returnType": "void"
                 }

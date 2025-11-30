@@ -52,7 +52,8 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../api_caller.cpp \
+SOURCES       = ../../anomalywidget.cpp \
+		../../api_caller.cpp \
 		../../dataservice.cpp \
 		../../graphNode.cpp \
 		../../graphWindow.cpp \
@@ -65,6 +66,7 @@ SOURCES       = ../../api_caller.cpp \
 		../../websocket_client.cpp \
 		../../zoomgraphicsview.cpp edi_qmltyperegistrations.cpp \
 		qrc_qml.cpp \
+		moc_anomalywidget.cpp \
 		moc_api_caller.cpp \
 		moc_dataservice.cpp \
 		moc_graphWindow.cpp \
@@ -75,7 +77,8 @@ SOURCES       = ../../api_caller.cpp \
 		moc_verbosewidget.cpp \
 		moc_websocket_client.cpp \
 		moc_zoomgraphicsview.cpp
-OBJECTS       = api_caller.o \
+OBJECTS       = anomalywidget.o \
+		api_caller.o \
 		dataservice.o \
 		graphNode.o \
 		graphWindow.o \
@@ -89,6 +92,7 @@ OBJECTS       = api_caller.o \
 		zoomgraphicsview.o \
 		edi_qmltyperegistrations.o \
 		qrc_qml.o \
+		moc_anomalywidget.o \
 		moc_api_caller.o \
 		moc_dataservice.o \
 		moc_graphWindow.o \
@@ -437,7 +441,8 @@ DIST          = ../../MyItem.qml \
 		/usr/lib/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
-		../../../../edi.pro ../../api_caller.h \
+		../../../../edi.pro ../../anomalywidget.h \
+		../../api_caller.h \
 		../../dataservice.h \
 		../../graphNode.h \
 		../../graphWindow.h \
@@ -447,7 +452,8 @@ DIST          = ../../MyItem.qml \
 		../../testwindow.h \
 		../../verbosewidget.h \
 		../../websocket_client.h \
-		../../zoomgraphicsview.h ../../api_caller.cpp \
+		../../zoomgraphicsview.h ../../anomalywidget.cpp \
+		../../api_caller.cpp \
 		../../dataservice.cpp \
 		../../graphNode.cpp \
 		../../graphWindow.cpp \
@@ -1187,13 +1193,13 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents edi_metatypes.json $(DISTDIR)/
 	$(COPY_FILE) --parents edi_metatypes.json $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.h ../../dataservice.h ../../graphNode.h ../../graphWindow.h ../../linegraphwindow.h ../../mainwindow.h ../../navbarwidget.h ../../testwindow.h ../../verbosewidget.h ../../websocket_client.h ../../zoomgraphicsview.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.h ../../api_caller.h ../../dataservice.h ../../graphNode.h ../../graphWindow.h ../../linegraphwindow.h ../../mainwindow.h ../../navbarwidget.h ../../testwindow.h ../../verbosewidget.h ../../websocket_client.h ../../zoomgraphicsview.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.h ../../dataservice.h ../../graphNode.h ../../graphWindow.h ../../linegraphwindow.h ../../mainwindow.h ../../navbarwidget.h ../../testwindow.h ../../verbosewidget.h ../../websocket_client.h ../../zoomgraphicsview.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.cpp ../../dataservice.cpp ../../graphNode.cpp ../../graphWindow.cpp ../../linegraphwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../navbarwidget.cpp ../../testwindow.cpp ../../verbosewidget.cpp ../../websocket_client.cpp ../../zoomgraphicsview.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents moc_.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.h ../../api_caller.h ../../dataservice.h ../../graphNode.h ../../graphWindow.h ../../linegraphwindow.h ../../mainwindow.h ../../navbarwidget.h ../../testwindow.h ../../verbosewidget.h ../../websocket_client.h ../../zoomgraphicsview.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.cpp ../../api_caller.cpp ../../dataservice.cpp ../../graphNode.cpp ../../graphWindow.cpp ../../linegraphwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../navbarwidget.cpp ../../testwindow.cpp ../../verbosewidget.cpp ../../websocket_client.cpp ../../zoomgraphicsview.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents moc_.cpp.json moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.cpp ../../dataservice.cpp ../../graphNode.cpp ../../graphWindow.cpp ../../linegraphwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../navbarwidget.cpp ../../testwindow.cpp ../../verbosewidget.cpp ../../websocket_client.cpp ../../zoomgraphicsview.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.cpp ../../api_caller.cpp ../../dataservice.cpp ../../graphNode.cpp ../../graphWindow.cpp ../../linegraphwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../navbarwidget.cpp ../../testwindow.cpp ../../verbosewidget.cpp ../../websocket_client.cpp ../../zoomgraphicsview.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.ui $(DISTDIR)/
 
 
@@ -1232,9 +1238,15 @@ edi.qmltypes: edi_metatypes.json \
 	
 
 
-compiler_moc_json_header_make_all: moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json
+compiler_moc_json_header_make_all: moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json
 compiler_moc_json_header_clean:
-	-$(DEL_FILE) moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json
+	-$(DEL_FILE) moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json
+moc_anomalywidget.cpp.json: ../../anomalywidget.h \
+		../../api_caller.h \
+		moc_anomalywidget.cpp
+	
+
+
 moc_api_caller.cpp.json: ../../api_caller.h \
 		moc_api_caller.cpp
 	
@@ -1299,9 +1311,15 @@ qrc_qml.cpp: ../../qml.qrc \
 		../../main.qml
 	/usr/lib/qt6/rcc -name qml ../../qml.qrc -o qrc_qml.cpp
 
-compiler_moc_header_make_all: moc_api_caller.cpp moc_dataservice.cpp moc_graphWindow.cpp moc_linegraphwindow.cpp moc_mainwindow.cpp moc_navbarwidget.cpp moc_testwindow.cpp moc_verbosewidget.cpp moc_websocket_client.cpp moc_zoomgraphicsview.cpp
+compiler_moc_header_make_all: moc_anomalywidget.cpp moc_api_caller.cpp moc_dataservice.cpp moc_graphWindow.cpp moc_linegraphwindow.cpp moc_mainwindow.cpp moc_navbarwidget.cpp moc_testwindow.cpp moc_verbosewidget.cpp moc_websocket_client.cpp moc_zoomgraphicsview.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_api_caller.cpp moc_dataservice.cpp moc_graphWindow.cpp moc_linegraphwindow.cpp moc_mainwindow.cpp moc_navbarwidget.cpp moc_testwindow.cpp moc_verbosewidget.cpp moc_websocket_client.cpp moc_zoomgraphicsview.cpp
+	-$(DEL_FILE) moc_anomalywidget.cpp moc_api_caller.cpp moc_dataservice.cpp moc_graphWindow.cpp moc_linegraphwindow.cpp moc_mainwindow.cpp moc_navbarwidget.cpp moc_testwindow.cpp moc_verbosewidget.cpp moc_websocket_client.cpp moc_zoomgraphicsview.cpp
+moc_anomalywidget.cpp: ../../anomalywidget.h \
+		../../api_caller.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/lucifer/projects/networkVisualiser/edi/build/Qt_6_9_2_qt6_temporary-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/lucifer/projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../anomalywidget.h -o moc_anomalywidget.cpp
+
 moc_api_caller.cpp: ../../api_caller.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
@@ -1365,6 +1383,7 @@ compiler_moc_collect_json_make_all: edi_metatypes.json
 compiler_moc_collect_json_clean:
 	-$(DEL_FILE) edi_metatypes.json
 edi_metatypes.json: moc_.cpp.json \
+		moc_anomalywidget.cpp.json \
 		moc_api_caller.cpp.json \
 		moc_dataservice.cpp.json \
 		moc_graphWindow.cpp.json \
@@ -1375,7 +1394,7 @@ edi_metatypes.json: moc_.cpp.json \
 		moc_verbosewidget.cpp.json \
 		moc_websocket_client.cpp.json \
 		moc_zoomgraphicsview.cpp.json 
-	/usr/lib/qt6/moc --collect-json -o edi_metatypes.json moc_.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json
+	/usr/lib/qt6/moc --collect-json -o edi_metatypes.json moc_.cpp.json moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_zoomgraphicsview.cpp.json
 
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
@@ -1401,6 +1420,10 @@ compiler_lex_clean:
 compiler_clean: compiler_qmltyperegistrar_compiler_clean compiler_qmltyperegistrar_qmltypes_clean compiler_moc_json_header_clean compiler_rcc_clean compiler_moc_header_clean compiler_moc_collect_json_clean compiler_moc_predefs_clean compiler_uic_clean 
 
 ####### Compile
+
+anomalywidget.o: ../../anomalywidget.cpp ../../anomalywidget.h \
+		../../api_caller.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o anomalywidget.o ../../anomalywidget.cpp
 
 api_caller.o: ../../api_caller.cpp ../../api_caller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o api_caller.o ../../api_caller.cpp
@@ -1430,7 +1453,10 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../navbarwidget.h \
 		../../verbosewidget.h \
 		../../linegraphwindow.h \
-		../../api_caller.h
+		../../api_caller.h \
+		../../graphWindow.h \
+		../../graphNode.h \
+		../../anomalywidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
 
 navbarwidget.o: ../../navbarwidget.cpp ../../navbarwidget.h
@@ -1456,6 +1482,9 @@ edi_qmltyperegistrations.o: edi_qmltyperegistrations.cpp
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
+
+moc_anomalywidget.o: moc_anomalywidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_anomalywidget.o moc_anomalywidget.cpp
 
 moc_api_caller.o: moc_api_caller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_api_caller.o moc_api_caller.cpp

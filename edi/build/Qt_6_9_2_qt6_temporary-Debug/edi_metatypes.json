@@ -4,6 +4,66 @@
     {
         "classes": [
             {
+                "className": "AnomalyWidget",
+                "lineNumber": 35,
+                "object": true,
+                "qualifiedClassName": "AnomalyWidget",
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 0,
+                        "lineNumber": 45,
+                        "name": "fetchPackets",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "lineNumber": 46,
+                        "name": "onPacketsReceived",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "data",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "lineNumber": 47,
+                        "name": "onPredictionReceived",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 3,
+                        "lineNumber": 48,
+                        "name": "clearResults",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QWidget"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "anomalywidget.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
                 "className": "ApiCaller",
                 "lineNumber": 8,
                 "object": true,
@@ -38,6 +98,23 @@
                 ],
                 "slots": [
                     {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "url",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "jsonData",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "lineNumber": 21,
+                        "name": "post",
+                        "returnType": "void"
+                    },
+                    {
                         "access": "private",
                         "arguments": [
                             {
@@ -45,8 +122,8 @@
                                 "type": "QNetworkReply*"
                             }
                         ],
-                        "index": 2,
-                        "lineNumber": 22,
+                        "index": 3,
+                        "lineNumber": 23,
                         "name": "onReplyFinished",
                         "returnType": "void"
                     }
@@ -266,35 +343,35 @@
         "classes": [
             {
                 "className": "MainWindow",
-                "lineNumber": 15,
+                "lineNumber": 16,
                 "object": true,
                 "qualifiedClassName": "MainWindow",
                 "slots": [
                     {
                         "access": "private",
                         "index": 0,
-                        "lineNumber": 23,
+                        "lineNumber": 24,
                         "name": "switchLayoutDashboard",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
                         "index": 1,
-                        "lineNumber": 24,
+                        "lineNumber": 25,
                         "name": "switchLayoutAnalytics",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
                         "index": 2,
-                        "lineNumber": 25,
+                        "lineNumber": 26,
                         "name": "switchLayoutVerbose",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
                         "index": 3,
-                        "lineNumber": 26,
+                        "lineNumber": 27,
                         "name": "switchLayoutGraph",
                         "returnType": "void"
                     }

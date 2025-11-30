@@ -1,0 +1,40 @@
+{
+    "classes": [
+        {
+            "className": "ZoomGraphicsView",
+            "lineNumber": 8,
+            "object": true,
+            "qualifiedClassName": "ZoomGraphicsView",
+            "slots": [
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "value",
+                            "type": "qreal"
+                        }
+                    ],
+                    "index": 0,
+                    "lineNumber": 27,
+                    "name": "scalingTime",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 1,
+                    "lineNumber": 28,
+                    "name": "animFinished",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QGraphicsView"
+                }
+            ]
+        }
+    ],
+    "inputFile": "zoomgraphicsview.h",
+    "outputRevision": 69
+}

@@ -1,0 +1,53 @@
+{
+    "classes": [
+        {
+            "className": "VerboseWidget",
+            "lineNumber": 13,
+            "object": true,
+            "qualifiedClassName": "VerboseWidget",
+            "slots": [
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "response",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "lineNumber": 25,
+                    "name": "onApiResponse",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "error",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "lineNumber": 26,
+                    "name": "onApiError",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 2,
+                    "lineNumber": 27,
+                    "name": "fetchData",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QWidget"
+                }
+            ]
+        }
+    ],
+    "inputFile": "verbosewidget.h",
+    "outputRevision": 69
+}

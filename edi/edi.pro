@@ -11,19 +11,31 @@ QML_IMPORT_MAJOR_VERSION = 1
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    # api_caller.cpp \
+    api_caller.cpp \
     dataservice.cpp \
+    graphNode.cpp \
+    graphWindow.cpp \
+    linegraphwindow.cpp \
     main.cpp \
     mainwindow.cpp \
+    navbarwidget.cpp \
     testwindow.cpp \
-    websocket_client.cpp
+    verbosewidget.cpp \
+    websocket_client.cpp \
+    zoomgraphicsview.cpp
 
 HEADERS += \
-    # api_caller.h \
+    api_caller.h \
     dataservice.h \
+    graphNode.h \
+    graphWindow.h \
+    linegraphwindow.h \
     mainwindow.h \
+    navbarwidget.h \
     testwindow.h \
-    websocket_client.h
+    verbosewidget.h \
+    websocket_client.h \
+    zoomgraphicsview.h
 
 FORMS += \
     mainwindow.ui

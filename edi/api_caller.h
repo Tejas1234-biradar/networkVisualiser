@@ -4,10 +4,6 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#pragma once
-#include <QObject>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
 
 class ApiCaller : public QObject {
     Q_OBJECT

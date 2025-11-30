@@ -1,0 +1,74 @@
+{
+    "classes": [
+        {
+            "className": "MainWindow",
+            "lineNumber": 13,
+            "object": true,
+            "qualifiedClassName": "MainWindow",
+            "slots": [
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "layout",
+                            "type": "QLayout*"
+                        }
+                    ],
+                    "index": 0,
+                    "lineNumber": 26,
+                    "name": "clearLayout",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 1,
+                    "lineNumber": 27,
+                    "name": "switchLayoutDashboard",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 2,
+                    "lineNumber": 28,
+                    "name": "switchLayoutAnalytics",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 3,
+                    "lineNumber": 29,
+                    "name": "switchLayoutVerbose",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 4,
+                    "lineNumber": 30,
+                    "name": "switchLayoutGraph",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "iconSize",
+                            "type": "QSize"
+                        }
+                    ],
+                    "index": 5,
+                    "lineNumber": 31,
+                    "name": "on_MainWindow_iconSizeChanged",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QMainWindow"
+                }
+            ]
+        }
+    ],
+    "inputFile": "mainwindow.h",
+    "outputRevision": 69
+}

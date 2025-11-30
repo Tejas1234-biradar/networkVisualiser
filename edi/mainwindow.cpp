@@ -1,159 +1,132 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QtQuickWidgets/QQuickWidget>
-#include <QQuickView>
-#include <QQmlContext>
+#include "navbarwidget.h"
+#include "verbosewidget.h"
+#include "linegraphwindow.h"
+#include "graphWindow.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QHBoxLayout>
-#include <QFrame>
-#include <QPushButton>
-#include <QStackedWidget>
-#include <QtCharts/QLineSeries>
-#include "iostream"
+#include <QDebug>
 
-
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),ui(new Ui::MainWindow) {
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    connect(ui->DashboardB,&QPushButton::clicked,this,&MainWindow::switchLayoutDashboard);
-    connect(ui->AnalyticsB,&QPushButton::clicked,this,&MainWindow::switchLayoutAnalytics);
-    connect(ui->VerboseB,&QPushButton::clicked,this,&MainWindow::switchLayoutVerbose);
-    connect(ui->GraphB,&QPushButton::clicked,this,&MainWindow::switchLayoutGraph);
+
+    // Create the navbar widget
+    NavbarWidget *navbar = new NavbarWidget(this);
+    setCentralWidget(navbar);
+
+    // Create placeholder pages
+    createDashboardPage(navbar);
+    createAnalyticsPage(navbar);
+    createVerbosePage(navbar);
+    createGraphPage(navbar);
+
+    // Connect navbar signals
+    connect(navbar, &NavbarWidget::dashboardClicked, this, &MainWindow::switchLayoutDashboard);
+    connect(navbar, &NavbarWidget::analyticsClicked, this, &MainWindow::switchLayoutAnalytics);
+    connect(navbar, &NavbarWidget::verboseClicked, this, &MainWindow::switchLayoutVerbose);
+    connect(navbar, &NavbarWidget::graphClicked, this, &MainWindow::switchLayoutGraph);
+
+    // Store navbar reference
+    m_navbar = navbar;
+
+    // Show dashboard by default
     switchLayoutDashboard();
-
 }
 
-void MainWindow::clearLayout(QLayout* layout){
-    if (!layout) return;
-    while (QLayoutItem* item = layout->takeAt(0)) {
-        if (QWidget* widget = item->widget()) {
-            widget->setParent(nullptr);  // Detach so Qt can manage correctly
-            widget->deleteLater();       // Schedule for deletion, avoids crash
-        } else if (QLayout* childLayout = item->layout()) {
-            clearLayout(childLayout); // Recursively clear
-        }
-        delete item;  // always delete the QLayoutItem
-    }
+void MainWindow::createDashboardPage(NavbarWidget *navbar) {
+    QWidget *dashboardPage = new QWidget();
+    QVBoxLayout *layout = new QVBoxLayout(dashboardPage);
+
+    // Top Row
+    layout->addWidget(new QLabel("Public IP | Private IP | Hostname | NIC"));
+
+    // Middle Row
+    layout->addWidget(new QLabel("Network Topography Graph"));
+
+    // Bottom Box
+    layout->addWidget(new QLabel("Anomaly Detection"));
+
+    m_dashboardIndex = navbar->addPage(dashboardPage);
 }
 
-void MainWindow::switchLayoutDashboard(){
-    //Destroy Old Layout
-    QLayout* oldLayout = ui->LayoutArea->layout();
-    if (oldLayout) {
-        clearLayout(oldLayout);
-        delete oldLayout;
-    }
-
-    QVBoxLayout* mainLayout = new QVBoxLayout;
-    //Top Row:
-    mainLayout->addWidget(new QLabel("Public IP | Private IP | Hostname | NIC"));
-
-    //Middle Row:
-    QHBoxLayout* middleRow = new QHBoxLayout;
-
-    //Left Box of Middle Row:
-    QVBoxLayout* leftColumn= new QVBoxLayout;
-    leftColumn->addWidget(new QLabel("Port Map"));
-    middleRow->addLayout(leftColumn);
-
-    //RIght Box of Middle Row:
-    QVBoxLayout* rightColumn = new QVBoxLayout;
-    rightColumn->addWidget(new QLabel("Network Topography Graph"));
-    middleRow->addLayout(rightColumn);
-
-    //Adding Middle Row to mainLayout:
-    mainLayout->addLayout(middleRow);
-
-    //Bottom Box:
-    mainLayout->addWidget(new QLabel("Anamoly Detection"));
-
-    ui->LayoutArea->setLayout(mainLayout);
-}
-
-void MainWindow::switchLayoutAnalytics(){
-    //Destroy Old Layout
-    QLayout* oldLayout = ui->LayoutArea->layout();
-    if (oldLayout) {
-        clearLayout(oldLayout);
-        delete oldLayout;
-    }
-    QVBoxLayout* mainLayout = new QVBoxLayout;
+void MainWindow::createAnalyticsPage(NavbarWidget *navbar) {
+    QWidget *analyticsPage = new QWidget();
+    QVBoxLayout *layout = new QVBoxLayout(analyticsPage);
 
     // Top area: Port Map
-    mainLayout->addWidget(new QLabel("Port Map"));
+    layout->addWidget(new QLabel("Packet Info"));
 
     // Bottom area: Heat Map/Pie chart
-    QHBoxLayout* bottomRow = new QHBoxLayout;
-    bottomRow->addWidget(new QLabel("Heat Map/Pie chart(Protocol)"));
-    // Insert chart or placeholder here if needed
-    mainLayout->addLayout(bottomRow);
+    QHBoxLayout *bottomRow = new QHBoxLayout;
+    bottomRow->addWidget(new QLabel("Heat Map/Pie chart (Protocol)"));
+    layout->addLayout(bottomRow);
 
-    ui->LayoutArea->setLayout(mainLayout);
+    m_analyticsIndex = navbar->addPage(analyticsPage);
 }
 
-void MainWindow::switchLayoutVerbose(){
-    std::cout << "In SwitchLayoutVerbose" << std::endl;
-    //Destroy Old Layout
-    QLayout* oldLayout = ui->LayoutArea->layout();
-    std::cout << "In SwitchLayoutVerbose:oldLayout" << oldLayout << std::endl;
-    if (oldLayout) {
-        clearLayout(oldLayout);
-        delete oldLayout;
-    }
-    QVBoxLayout* mainLayout = new QVBoxLayout;
+void MainWindow::createVerbosePage(NavbarWidget *navbar) {
+    // Create the verbose widget (table + graph)
+    VerboseWidget *verboseWidget = new VerboseWidget();
 
-    mainLayout->addWidget(new QLabel("Packet Info"));
-    mainLayout->addWidget(new QLabel("Line Graph"));
-    //lineGraphQmlWidget = new QQuickWidget(this);
-    //lineGraphQmlWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    //lineGraphQmlWidget->setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+    // Start monitoring packets every 2.5 seconds
+    verboseWidget->startMonitoring("http://localhost:5000/api/packets/stream", 2500);
 
-    //QQuickItem *qQuickItem = lineGraphQmlWidget->rootObject();
-
-
-    // QVariantList points ;
-    // points
-    //     << QVariantMap {{ "x",0}, {"y",1}}
-    //     << QVariantMap {{ "x",1}, {"y",3}}
-    //     << QVariantMap {{ "x",2}, {"y",2}};
-
-    // lineGraphQmlWidget->setProperty("dataPoints",points);
-
-
-    // Using QQuickView
-    // QQuickView view;
-    // view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
-    // view.show();
-    // QObject *object = view.findChild("graphView");
-    // QQuickItem *item = qobject_cast<QQuickItem*>(object);
-    // item->setWidth(500);
-
-    // object->setProperty("width", 500);
-    // QQmlProperty(object, "width").write(500);
-
-
-    // Add to layout
-    //mainLayout->addWidget(lineGraphQmlWidget);
-    QQuickWidget *qmlWidget = new QQuickWidget;
-
-    qmlWidget->setSource(QUrl(QStringLiteral("qrc:/MyItem.qml")));
-    //setCentralWidget(qmlWidget);
-    mainLayout->addWidget(qmlWidget);
-    ui->LayoutArea->setLayout(mainLayout);
-    //this->resize(500,500);
-    //this->show();
+    m_verboseIndex = navbar->addPage(verboseWidget);
+    m_verboseWidget = verboseWidget;
 }
 
-void MainWindow::switchLayoutGraph(){
-    //Destroy Old Layout
-    QLayout* oldLayout = ui->LayoutArea->layout();
-    if (oldLayout) {
-        clearLayout(oldLayout);
-        delete oldLayout;
+void MainWindow::createGraphPage(NavbarWidget *navbar) {
+    // Create a container widget for the graph page
+    QWidget *graphPage = new QWidget();
+    QVBoxLayout *layout = new QVBoxLayout(graphPage);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+
+    // Create the GraphWindow but don't show it as a separate window
+    GraphWindow *graphWindow = new GraphWindow(graphPage);
+
+    // Add the central widget of GraphWindow to our layout
+    layout->addWidget(graphWindow->centralWidget());
+
+    // Initialize the graph window
+    graphWindow->initialize();
+
+    // Store reference if needed for later access
+    m_graphWidget = graphWindow;
+
+    // Add the page to navbar
+    m_graphIndex = navbar->addPage(graphPage);
+}
+
+void MainWindow::switchLayoutDashboard() {
+    qDebug() << "Switching to Dashboard";
+    if (m_navbar) {
+        m_navbar->switchToPage(m_dashboardIndex);
     }
-    QVBoxLayout* newLayout = new QVBoxLayout;
-    newLayout->addWidget(new QLabel("Graph", ui->LayoutArea));
-    ui->LayoutArea->setLayout(newLayout);
+}
+
+void MainWindow::switchLayoutAnalytics() {
+    qDebug() << "Switching to Analytics";
+    if (m_navbar) {
+        m_navbar->switchToPage(m_analyticsIndex);
+    }
+}
+
+void MainWindow::switchLayoutVerbose() {
+    qDebug() << "Switching to Verbose";
+    if (m_navbar) {
+        m_navbar->switchToPage(m_verboseIndex);
+    }
+}
+
+void MainWindow::switchLayoutGraph() {
+    qDebug() << "Switching to Graph";
+    if (m_navbar) {
+        m_navbar->switchToPage(m_graphIndex);
+    }
 }
 
 MainWindow::~MainWindow() {

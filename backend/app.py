@@ -440,7 +440,123 @@ def get_detailed_graph():
             "cleanup_interval_seconds": CLEANUP_INTERVAL
         }
     }
+# Add this new endpoint to your app.py file (before if __name__ == "__main__":)
 
+@app.route("/api/packets/recent")
+def get_recent_packets():
+    """Get recent packet data formatted for Qt visualization"""
+    current_time = time.time()
+    
+    packets = []
+    
+    # Get recent edges (last 100) and format as packets
+    recent_edges = sorted(
+        edge_data.items(), 
+        key=lambda x: x[1]["last_seen"], 
+        reverse=True
+    )[:100]
+    
+    for (src_ip, dst_ip), edge_info in recent_edges:
+        # Extract port from IP if format is IP:port
+        src_port = 0
+        dst_port = 0
+        
+        if ":" in src_ip:
+            parts = src_ip.split(":")
+            src_ip_clean = parts[0]
+            src_port = int(parts[1]) if len(parts) > 1 else 0
+        else:
+            src_ip_clean = src_ip
+            
+        if ":" in dst_ip:
+            parts = dst_ip.split(":")
+            dst_ip_clean = parts[0]
+            dst_port = int(parts[1]) if len(parts) > 1 else 0
+        else:
+            dst_ip_clean = dst_ip
+        
+        # Get protocol (use first protocol from set)
+        protocol = list(edge_info["protocols"])[0] if edge_info["protocols"] else "TCP"
+        
+        # Create packet in the format Qt expects
+        packet = {
+            "src_ip": src_ip_clean,
+            "src_port": src_port,
+            "dst_ip": dst_ip_clean,
+            "dst_port": dst_port,
+            "length": edge_info["packet_count"],
+            "protocol": protocol,
+            "tcp_flags": {
+                "ACK": 1 if protocol == "TCP" else 0,
+                "FIN": 0,
+                "PSH": 1 if edge_info["packet_count"] > 5 else 0,
+                "RST": 0,
+                "SYN": 0,
+                "URG": 0
+            },
+            "timestamp": edge_info["last_seen"]
+        }
+        
+        packets.append(packet)
+    
+    return jsonify({
+        "packets": packets,
+        "count": len(packets),
+        "timestamp": current_time
+    })
+
+@app.route("/api/packets/stream")
+def get_packet_stream():
+    """Get a single recent packet for streaming updates"""
+    if not edge_data:
+        return jsonify({
+            "packet": None,
+            "message": "No packets available"
+        })
+    
+    # Get the most recent edge
+    latest_edge = max(edge_data.items(), key=lambda x: x[1]["last_seen"])
+    (src_ip, dst_ip), edge_info = latest_edge
+    
+    # Extract ports
+    src_port = 0
+    dst_port = 0
+    
+    if ":" in src_ip:
+        parts = src_ip.split(":")
+        src_ip_clean = parts[0]
+        src_port = int(parts[1]) if len(parts) > 1 else 0
+    else:
+        src_ip_clean = src_ip
+        
+    if ":" in dst_ip:
+        parts = dst_ip.split(":")
+        dst_ip_clean = parts[0]
+        dst_port = int(parts[1]) if len(parts) > 1 else 0
+    else:
+        dst_ip_clean = dst_ip
+    
+    protocol = list(edge_info["protocols"])[0] if edge_info["protocols"] else "TCP"
+    
+    packet = {
+        "src_ip": src_ip_clean,
+        "src_port": src_port,
+        "dst_ip": dst_ip_clean,
+        "dst_port": dst_port,
+        "length": edge_info["packet_count"],
+        "protocol": protocol,
+        "tcp_flags": {
+            "ACK": 1 if protocol == "TCP" else 0,
+            "FIN": 0,
+            "PSH": 1 if edge_info["packet_count"] > 5 else 0,
+            "RST": 0,
+            "SYN": 0,
+            "URG": 0
+        },
+        "timestamp": edge_info["last_seen"]
+    }
+    
+    return jsonify(packet)
 @app.route("/api/topology")
 def get_topology():
     """Get network topology with path analysis"""

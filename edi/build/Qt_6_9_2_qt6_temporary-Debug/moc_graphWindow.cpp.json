@@ -1,0 +1,74 @@
+{
+    "classes": [
+        {
+            "className": "GraphWindow",
+            "lineNumber": 44,
+            "object": true,
+            "qualifiedClassName": "GraphWindow",
+            "slots": [
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "data",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "lineNumber": 54,
+                    "name": "onApiResponse",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 1,
+                    "lineNumber": 55,
+                    "name": "toggleTopology",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "arguments": [
+                        {
+                            "name": "enabled",
+                            "type": "bool"
+                        }
+                    ],
+                    "index": 2,
+                    "lineNumber": 56,
+                    "name": "toggleTraceRoute",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 3,
+                    "lineNumber": 57,
+                    "name": "resetView",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 4,
+                    "lineNumber": 58,
+                    "name": "refreshData",
+                    "returnType": "void"
+                },
+                {
+                    "access": "private",
+                    "index": 5,
+                    "lineNumber": 59,
+                    "name": "fetchGraphData",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QMainWindow"
+                }
+            ]
+        }
+    ],
+    "inputFile": "graphWindow.h",
+    "outputRevision": 69
+}

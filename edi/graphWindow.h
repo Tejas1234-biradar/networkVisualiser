@@ -6,14 +6,14 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QLabel>
-#include <QWebSocket>
+#include <QTimer>
 #include <QMap>
 #include <QSet>
 #include <QPointF>
 #include "api_caller.h"
 #include "graphNode.h"
 
-class ZoomGraphicsView;  // Forward declaration
+class ZoomGraphicsView;
 
 struct Edge {
     QString source;
@@ -29,7 +29,7 @@ struct Edge {
 struct NodeData {
     QString id;
     QString ip;
-    QString type;  // "router", "destination", "local"
+    QString type;
     bool isLocal;
     int packetCount;
     QStringList protocols;
@@ -47,17 +47,16 @@ class GraphWindow : public QMainWindow
 
 public:
     GraphWindow(QWidget *parent = nullptr);
+    ~GraphWindow();
     void initialize();
 
 private slots:
     void onApiResponse(const QString &data);
-    void onSocketConnected();
-    void onSocketMessage(const QString &message);
-    void onSocketError(QAbstractSocket::SocketError error);
     void toggleTopology();
     void toggleTraceRoute(bool enabled);
     void resetView();
     void refreshData();
+    void fetchGraphData();
 
 private:
     void addEdge(const Edge &edge);
@@ -72,7 +71,6 @@ private:
     double getNodeSize(const QString &nodeId);
     void updateStatistics();
     void updateConnectionStatus(bool connected);
-    void setupZoom();
 
     QGraphicsScene *scene;
     ZoomGraphicsView *view;
@@ -89,7 +87,7 @@ private:
     QLabel *statusLabel;
 
     ApiCaller *api;
-    QWebSocket *socket;
+    QTimer *pollTimer;
 
     QMap<QString, QSet<QString>> adjacency;
     QList<Edge> edges;
@@ -103,10 +101,6 @@ private:
     const double REPULSION_STRENGTH = 5000.0;
     const double ATTRACTION_STRENGTH = 0.05;
     const double DAMPING = 0.5;
-    const double ZOOM_FACTOR = 1.15;
-    const double MIN_ZOOM = 0.2;
-    const double MAX_ZOOM = 5.0;
-    double currentZoom = 1.0;
 };
 
 #endif // GRAPHWINDOW_H

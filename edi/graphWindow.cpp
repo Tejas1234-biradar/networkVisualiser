@@ -1,5 +1,5 @@
 #include "graphWindow.h"
-#include "zoomgraphicsview.h"  // Add this include
+#include "zoomgraphicsview.h"
 #include <QGraphicsLineItem>
 #include <QGraphicsTextItem>
 #include <QtMath>
@@ -107,11 +107,11 @@ GraphWindow::GraphWindow(QWidget *parent)
     controlLayout->addStretch();
 
     // Connection status indicator
-    statusLabel = new QLabel("● Disconnected");
+    statusLabel = new QLabel("● Connecting...");
     statusLabel->setStyleSheet(
         "QLabel { "
         "  background: rgba(0, 0, 0, 180); "
-        "  color: #f44336; "
+        "  color: #FFA726; "
         "  padding: 8px 15px; "
         "  border-radius: 15px; "
         "  font-weight: bold;"
@@ -120,9 +120,9 @@ GraphWindow::GraphWindow(QWidget *parent)
     controlLayout->addWidget(statusLabel);
     controlPanel->setLayout(controlLayout);
 
-    // Create scene and view - CHANGED: Use ZoomGraphicsView instead of QGraphicsView
+    // Create scene and view
     scene = new QGraphicsScene(this);
-    view = new ZoomGraphicsView(scene, this);  // Fixed: was QGraphicsView
+    view = new ZoomGraphicsView(scene, this);
     view->setRenderHint(QPainter::Antialiasing);
     view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     view->setBackgroundBrush(QBrush(QColor(21, 25, 64)));
@@ -202,14 +202,15 @@ GraphWindow::GraphWindow(QWidget *parent)
         "}"
         );
 
+    // Initialize API caller
     api = new ApiCaller(this);
-    socket = new QWebSocket();
-
     connect(api, &ApiCaller::responseReceived, this, &GraphWindow::onApiResponse);
-    connect(socket, &QWebSocket::connected, this, &GraphWindow::onSocketConnected);
-    connect(socket, &QWebSocket::textMessageReceived, this, &GraphWindow::onSocketMessage);
-    connect(socket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::error),
-            this, &GraphWindow::onSocketError);
+
+    // Setup polling timer for periodic updates
+    pollTimer = new QTimer(this);
+    connect(pollTimer, &QTimer::timeout, this, &GraphWindow::fetchGraphData);
+
+    // Connect button signals
     connect(topologyButton, &QPushButton::clicked, this, &GraphWindow::toggleTopology);
     connect(resetButton, &QPushButton::clicked, this, &GraphWindow::resetView);
     connect(refreshButton, &QPushButton::clicked, this, &GraphWindow::refreshData);
@@ -218,8 +219,18 @@ GraphWindow::GraphWindow(QWidget *parent)
 
 void GraphWindow::initialize()
 {
+    // Initial fetch
+    fetchGraphData();
+
+    // Start polling every 3 seconds (3000ms)
+    pollTimer->start(3000);
+
+    updateConnectionStatus(true);
+}
+
+void GraphWindow::fetchGraphData()
+{
     api->get("http://localhost:5000/api/graph");
-    socket->open(QUrl("ws://localhost:5000/socket.io/?EIO=4&transport=websocket"));
 }
 
 void GraphWindow::onApiResponse(const QString &data)
@@ -227,6 +238,7 @@ void GraphWindow::onApiResponse(const QString &data)
     QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
     if (!doc.isObject()) {
         qWarning() << "Unexpected format, got non-object JSON";
+        updateConnectionStatus(false);
         return;
     }
 
@@ -258,6 +270,7 @@ void GraphWindow::onApiResponse(const QString &data)
     // Parse edges
     if (!root.contains("edges") || !root["edges"].isArray()) {
         qWarning() << "Missing 'edges' array in response";
+        updateConnectionStatus(false);
         return;
     }
 
@@ -291,45 +304,7 @@ void GraphWindow::onApiResponse(const QString &data)
     qDebug() << "Parsed edges:" << edges.size() << "nodes:" << nodeDataMap.size();
     updateStatistics();
     drawGraph();
-}
-
-void GraphWindow::onSocketConnected()
-{
-    qDebug() << "WebSocket connected!";
     updateConnectionStatus(true);
-}
-
-void GraphWindow::onSocketMessage(const QString &message)
-{
-    QJsonDocument doc = QJsonDocument::fromJson(message.toUtf8());
-    if (!doc.isObject()) return;
-
-    QJsonObject obj = doc.object();
-    Edge e;
-    e.source = obj["source"].toString();
-    e.target = obj["target"].toString();
-    e.type = obj["type"].toString();
-    e.packetCount = obj["packet_count"].toInt();
-    e.ageSeconds = obj["age_seconds"].toDouble();
-    e.firstSeen = obj["first_seen"].toDouble();
-    e.lastSeen = obj["last_seen"].toDouble();
-
-    if (obj["protocols"].isArray()) {
-        for (auto p : obj["protocols"].toArray())
-            e.protocols.append(p.toString());
-    }
-
-    addEdge(e);
-    updateNodeData(e.source);
-    updateNodeData(e.target);
-    updateStatistics();
-    drawGraph();
-}
-
-void GraphWindow::onSocketError(QAbstractSocket::SocketError error)
-{
-    qWarning() << "WebSocket error:" << socket->errorString();
-    updateConnectionStatus(false);
 }
 
 void GraphWindow::addEdge(const Edge &edge)
@@ -356,7 +331,6 @@ void GraphWindow::toggleTopology()
     if (currentTopology == CIRCLE_TOPOLOGY) {
         currentTopology = RADIAL_TOPOLOGY;
 
-        // Animate transition
         QTimer::singleShot(0, this, [this]() {
             applyRadialLayout();
         });
@@ -383,13 +357,12 @@ void GraphWindow::toggleTraceRoute(bool enabled)
 
 void GraphWindow::resetView()
 {
-    // No need to cast anymore since view is already ZoomGraphicsView*
     view->resetZoom();
 }
 
 void GraphWindow::refreshData()
 {
-    api->get("http://localhost:5000/api/graph/detailed");
+    fetchGraphData();
 }
 
 void GraphWindow::updateStatistics()
@@ -554,10 +527,10 @@ QColor GraphWindow::getNodeColor(const QString &nodeId)
 {
     if (nodeDataMap.contains(nodeId)) {
         const NodeData &node = nodeDataMap[nodeId];
-        if (node.isLocal) return QColor(255, 107, 107);  // Red for local
-        if (node.type == "router") return QColor(78, 205, 196);  // Teal for routers
+        if (node.isLocal) return QColor(255, 107, 107);
+        if (node.type == "router") return QColor(78, 205, 196);
     }
-    return QColor(69, 183, 209);  // Blue for destinations
+    return QColor(69, 183, 209);
 }
 
 double GraphWindow::getNodeSize(const QString &nodeId)
@@ -572,17 +545,15 @@ double GraphWindow::getNodeSize(const QString &nodeId)
 
 QColor GraphWindow::getEdgeColor(const Edge &edge)
 {
-    // Color based on edge type
     if (edge.type == "direct") {
-        return QColor(150, 206, 180, 180);  // Green for direct
+        return QColor(150, 206, 180, 180);
     } else {
-        return QColor(254, 202, 87, 180);  // Yellow for traceroute
+        return QColor(254, 202, 87, 180);
     }
 }
 
 void GraphWindow::drawGraph()
 {
-    // Fade out effect before clearing
     scene->setBackgroundBrush(QBrush(QColor(41, 41, 87)));
 
     scene->clear();
@@ -603,7 +574,6 @@ void GraphWindow::drawGraph()
             nodePositions[nodes[i]] = pos;
         }
     }
-    // For FREE_TOPOLOGY and RADIAL_TOPOLOGY, positions are already set
 
     // Filter edges based on showTraceRoute
     QList<Edge> visibleEdges;
@@ -613,17 +583,16 @@ void GraphWindow::drawGraph()
         }
     }
 
-    // Draw edges first (so they appear behind nodes)
+    // Draw edges first
     for (const Edge &edge : visibleEdges) {
         drawEdge(edge.source, edge.target, edge);
     }
 
-    // Draw nodes with slight delay for smooth appearance
+    // Draw nodes
     for (const QString &node : nodes) {
         drawNode(node, nodePositions[node]);
     }
 
-    // Ensure scene rect encompasses all items
     scene->setSceneRect(scene->itemsBoundingRect().adjusted(-100, -100, 100, 100));
 }
 
@@ -641,7 +610,6 @@ void GraphWindow::drawNode(const QString &node, const QPointF &pos)
 
     GraphNode *graphNode = new GraphNode(node, pos, size, color, displayText);
 
-    // Add tooltip with full information
     if (nodeDataMap.contains(node)) {
         const NodeData &data = nodeDataMap[node];
         QString tooltip = QString("IP: %1\nType: %2\nPackets: %3")
@@ -668,15 +636,19 @@ void GraphWindow::drawEdge(const QString &source, const QString &target, const E
 
     QColor edgeColor = getEdgeColor(edgeData);
 
-    // Calculate line thickness based on packet count
     double thickness = qMin(1.0 + qLn(edgeData.packetCount + 1) * 2, 8.0);
 
     QPen pen(edgeColor, thickness);
     pen.setCapStyle(Qt::RoundCap);
 
     QGraphicsLineItem *line = scene->addLine(QLineF(src, dst), pen);
-    line->setZValue(-1);  // Draw behind nodes
+    line->setZValue(-1);
+}
 
-    // Add edge label with packet count if significant
-
+GraphWindow::~GraphWindow()
+{
+    // Stop the timer when destroying the window
+    if (pollTimer) {
+        pollTimer->stop();
+    }
 }

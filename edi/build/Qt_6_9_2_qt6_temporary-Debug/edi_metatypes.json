@@ -127,47 +127,14 @@
                             }
                         ],
                         "index": 0,
-                        "lineNumber": 53,
+                        "lineNumber": 54,
                         "name": "onApiResponse",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
                         "index": 1,
-                        "lineNumber": 54,
-                        "name": "onSocketConnected",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "private",
-                        "arguments": [
-                            {
-                                "name": "message",
-                                "type": "QString"
-                            }
-                        ],
-                        "index": 2,
                         "lineNumber": 55,
-                        "name": "onSocketMessage",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "private",
-                        "arguments": [
-                            {
-                                "name": "error",
-                                "type": "QAbstractSocket::SocketError"
-                            }
-                        ],
-                        "index": 3,
-                        "lineNumber": 56,
-                        "name": "onSocketError",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "private",
-                        "index": 4,
-                        "lineNumber": 57,
                         "name": "toggleTopology",
                         "returnType": "void"
                     },
@@ -179,23 +146,30 @@
                                 "type": "bool"
                             }
                         ],
-                        "index": 5,
-                        "lineNumber": 58,
+                        "index": 2,
+                        "lineNumber": 56,
                         "name": "toggleTraceRoute",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
-                        "index": 6,
-                        "lineNumber": 59,
+                        "index": 3,
+                        "lineNumber": 57,
                         "name": "resetView",
                         "returnType": "void"
                     },
                     {
                         "access": "private",
-                        "index": 7,
-                        "lineNumber": 60,
+                        "index": 4,
+                        "lineNumber": 58,
                         "name": "refreshData",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 5,
+                        "lineNumber": 59,
+                        "name": "fetchGraphData",
                         "returnType": "void"
                     }
                 ],

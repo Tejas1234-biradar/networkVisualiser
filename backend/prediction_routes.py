@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Prediction Routes for Malicious Packet Detection
-Separate Flask blueprint for prediction endpoints
-"""
 from flask import Blueprint, request, jsonify
 from malicious_predictor import predict_malicious_packet, load_model
 
@@ -11,7 +6,6 @@ prediction_bp = Blueprint('prediction', __name__)
 
 # Global variable to track model loading status
 malicious_model_loaded = False
-
 
 def initialize_model():
     """Initialize the malicious packet detection model"""
@@ -22,7 +16,6 @@ def initialize_model():
     else:
         print("[SUCCESS] Malicious packet detection model loaded successfully")
     return malicious_model_loaded
-
 
 @prediction_bp.route('/predict/malicious-packet', methods=['POST'])
 def predict_malicious_packet_endpoint():

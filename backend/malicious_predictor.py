@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Malicious Packet Predictor Module
-Provides functions to load model and predict malicious packets
-"""
 import os
 import joblib
 import numpy as np

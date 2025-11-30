@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Training script for Malicious Packet Detection Model
-Run this to generate the malicious_packet_model.pkl file
-"""
 import pandas as pd
 import numpy as np
 import joblib

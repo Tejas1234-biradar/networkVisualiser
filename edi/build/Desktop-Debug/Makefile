@@ -16,7 +16,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_QML_DEBUG -DQT_QUICKWIDGETS_LIB -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_QMLMETA_LIB -DQT_QMLMODELS_LIB -DQT_QMLWORKERSCRIPT_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_WEBSOCKETS_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
-CXXFLAGS      = -pipe -g -std=gnu++1z -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
+CXXFLAGS      = -pipe -g -Wall -Wextra -mno-direct-extern-access -D_REENTRANT $(DEFINES)
 INCPATH       = -I../../../edi -I. -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I. -I/usr/lib/qt6/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt6/bin/qmake
 DEL_FILE      = rm -f
@@ -52,24 +52,63 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../api_caller.cpp \
+SOURCES       = ../../anomalywidget.cpp \
+		../../api_caller.cpp \
+		../../dataservice.cpp \
+		../../graphNode.cpp \
+		../../graphWindow.cpp \
+		../../linegraphwindow.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
+		../../navbarwidget.cpp \
 		../../testwindow.cpp \
-		../../websocket_client.cpp moc_api_caller.cpp \
+		../../verbosewidget.cpp \
+		../../websocket_client.cpp \
+		../../welcomescreen.cpp \
+		../../zoomgraphicsview.cpp edi_qmltyperegistrations.cpp \
+		qrc_qml.cpp \
+		moc_anomalywidget.cpp \
+		moc_api_caller.cpp \
+		moc_dataservice.cpp \
+		moc_graphWindow.cpp \
+		moc_linegraphwindow.cpp \
 		moc_mainwindow.cpp \
+		moc_navbarwidget.cpp \
 		moc_testwindow.cpp \
-		moc_websocket_client.cpp
-OBJECTS       = api_caller.o \
+		moc_verbosewidget.cpp \
+		moc_websocket_client.cpp \
+		moc_welcomescreen.cpp \
+		moc_zoomgraphicsview.cpp
+OBJECTS       = anomalywidget.o \
+		api_caller.o \
+		dataservice.o \
+		graphNode.o \
+		graphWindow.o \
+		linegraphwindow.o \
 		main.o \
 		mainwindow.o \
+		navbarwidget.o \
 		testwindow.o \
+		verbosewidget.o \
 		websocket_client.o \
+		welcomescreen.o \
+		zoomgraphicsview.o \
+		edi_qmltyperegistrations.o \
+		qrc_qml.o \
+		moc_anomalywidget.o \
 		moc_api_caller.o \
+		moc_dataservice.o \
+		moc_graphWindow.o \
+		moc_linegraphwindow.o \
 		moc_mainwindow.o \
+		moc_navbarwidget.o \
 		moc_testwindow.o \
-		moc_websocket_client.o
-DIST          = ../../main.qml \
+		moc_verbosewidget.o \
+		moc_websocket_client.o \
+		moc_welcomescreen.o \
+		moc_zoomgraphicsview.o
+DIST          = ../../MyItem.qml \
+		../../main.qml \
 		/usr/lib/qt6/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt6/mkspecs/common/unix.conf \
 		/usr/lib/qt6/mkspecs/common/linux.conf \
@@ -355,6 +394,8 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
 		/usr/lib/qt6/mkspecs/features/resolve_config.prf \
 		/usr/lib/qt6/mkspecs/features/default_post.prf \
+		/usr/lib/qt6/mkspecs/features/qmltypes.prf \
+		/usr/lib/qt6/mkspecs/features/metatypes.prf \
 		/usr/lib/qt6/mkspecs/features/qml_debug.prf \
 		/usr/lib/qt6/mkspecs/features/warn_on.prf \
 		/usr/lib/qt6/mkspecs/features/permissions.prf \
@@ -373,14 +414,32 @@ DIST          = ../../main.qml \
 		/usr/lib/qt6/mkspecs/features/exceptions.prf \
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
-		../../../../edi.pro ../../api_caller.h \
+		../../../../edi.pro ../../anomalywidget.h \
+		../../api_caller.h \
+		../../dataservice.h \
+		../../graphNode.h \
+		../../graphWindow.h \
+		../../linegraphwindow.h \
 		../../mainwindow.h \
+		../../navbarwidget.h \
 		../../testwindow.h \
-		../../websocket_client.h ../../api_caller.cpp \
+		../../verbosewidget.h \
+		../../websocket_client.h \
+		../../welcomescreen.h \
+		../../zoomgraphicsview.h ../../anomalywidget.cpp \
+		../../api_caller.cpp \
+		../../dataservice.cpp \
+		../../graphNode.cpp \
+		../../graphWindow.cpp \
+		../../linegraphwindow.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
+		../../navbarwidget.cpp \
 		../../testwindow.cpp \
-		../../websocket_client.cpp
+		../../verbosewidget.cpp \
+		../../websocket_client.cpp \
+		../../welcomescreen.cpp \
+		../../zoomgraphicsview.cpp
 QMAKE_TARGET  = edi
 DESTDIR       = 
 TARGET        = edi
@@ -389,7 +448,7 @@ TARGET        = edi
 first: all
 ####### Build rules
 
-edi: ui_mainwindow.h $(OBJECTS)  
+edi: edi_metatypes.json ui_mainwindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/mkspecs/features/spec_pre.prf \
@@ -677,6 +736,8 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/features/default_pre.prf \
 		/usr/lib/qt6/mkspecs/features/resolve_config.prf \
 		/usr/lib/qt6/mkspecs/features/default_post.prf \
+		/usr/lib/qt6/mkspecs/features/qmltypes.prf \
+		/usr/lib/qt6/mkspecs/features/metatypes.prf \
 		/usr/lib/qt6/mkspecs/features/qml_debug.prf \
 		/usr/lib/qt6/mkspecs/features/warn_on.prf \
 		/usr/lib/qt6/mkspecs/features/permissions.prf \
@@ -696,6 +757,7 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 		/usr/lib/qt6/mkspecs/features/yacc.prf \
 		/usr/lib/qt6/mkspecs/features/lex.prf \
 		../../edi.pro \
+		../../qml.qrc \
 		/usr/lib/libQt6QuickWidgets.prl \
 		/usr/lib/libQt6Quick.prl \
 		/usr/lib/libQt6OpenGL.prl \
@@ -994,6 +1056,8 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/features/default_pre.prf:
 /usr/lib/qt6/mkspecs/features/resolve_config.prf:
 /usr/lib/qt6/mkspecs/features/default_post.prf:
+/usr/lib/qt6/mkspecs/features/qmltypes.prf:
+/usr/lib/qt6/mkspecs/features/metatypes.prf:
 /usr/lib/qt6/mkspecs/features/qml_debug.prf:
 /usr/lib/qt6/mkspecs/features/warn_on.prf:
 /usr/lib/qt6/mkspecs/features/permissions.prf:
@@ -1013,6 +1077,7 @@ Makefile: ../../edi.pro /usr/lib/qt6/mkspecs/linux-g++/qmake.conf /usr/lib/qt6/m
 /usr/lib/qt6/mkspecs/features/yacc.prf:
 /usr/lib/qt6/mkspecs/features/lex.prf:
 ../../edi.pro:
+../../qml.qrc:
 /usr/lib/libQt6QuickWidgets.prl:
 /usr/lib/libQt6Quick.prl:
 /usr/lib/libQt6OpenGL.prl:
@@ -1039,9 +1104,15 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents edi_metatypes.json $(DISTDIR)/
+	$(COPY_FILE) --parents edi_metatypes.json $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.h ../../api_caller.h ../../dataservice.h ../../graphNode.h ../../graphWindow.h ../../linegraphwindow.h ../../mainwindow.h ../../navbarwidget.h ../../testwindow.h ../../verbosewidget.h ../../websocket_client.h ../../welcomescreen.h ../../zoomgraphicsview.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.h ../../api_caller.h ../../dataservice.h ../../graphNode.h ../../graphWindow.h ../../linegraphwindow.h ../../mainwindow.h ../../navbarwidget.h ../../testwindow.h ../../verbosewidget.h ../../websocket_client.h ../../welcomescreen.h ../../zoomgraphicsview.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.cpp ../../api_caller.cpp ../../dataservice.cpp ../../graphNode.cpp ../../graphWindow.cpp ../../linegraphwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../navbarwidget.cpp ../../testwindow.cpp ../../verbosewidget.cpp ../../websocket_client.cpp ../../welcomescreen.cpp ../../zoomgraphicsview.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents moc_.cpp.json moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_welcomescreen.cpp.json moc_zoomgraphicsview.cpp.json $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt6/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.h ../../mainwindow.h ../../testwindow.h ../../websocket_client.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../api_caller.cpp ../../main.cpp ../../mainwindow.cpp ../../testwindow.cpp ../../websocket_client.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../anomalywidget.cpp ../../api_caller.cpp ../../dataservice.cpp ../../graphNode.cpp ../../graphWindow.cpp ../../linegraphwindow.cpp ../../main.cpp ../../mainwindow.cpp ../../navbarwidget.cpp ../../testwindow.cpp ../../verbosewidget.cpp ../../websocket_client.cpp ../../welcomescreen.cpp ../../zoomgraphicsview.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../mainwindow.ui $(DISTDIR)/
 
 
@@ -1066,39 +1137,197 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
-compiler_rcc_clean:
-compiler_moc_predefs_make_all: moc_predefs.h
-compiler_moc_predefs_clean:
-	-$(DEL_FILE) moc_predefs.h
-moc_predefs.h: /usr/lib/qt6/mkspecs/features/data/dummy.cpp
-	g++ -pipe -g -std=gnu++1z -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt6/mkspecs/features/data/dummy.cpp
+compiler_qmltyperegistrar_compiler_make_all: edi_qmltyperegistrations.cpp
+compiler_qmltyperegistrar_compiler_clean:
+	-$(DEL_FILE) edi_qmltyperegistrations.cpp
+edi_qmltyperegistrations.cpp: edi_metatypes.json 
+	/usr/lib/qt6/qmltyperegistrar --generate-qmltypes=edi.qmltypes --import-name=DataService --major-version=1 --minor-version=0 -o edi_qmltyperegistrations.cpp edi_metatypes.json
 
-compiler_moc_header_make_all: moc_api_caller.cpp moc_mainwindow.cpp moc_testwindow.cpp moc_websocket_client.cpp
+compiler_qmltyperegistrar_qmltypes_make_all: edi.qmltypes
+compiler_qmltyperegistrar_qmltypes_clean:
+	-$(DEL_FILE) edi.qmltypes
+edi.qmltypes: edi_metatypes.json \
+		edi_qmltyperegistrations.cpp
+	
+
+
+compiler_moc_json_header_make_all: moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_welcomescreen.cpp.json moc_zoomgraphicsview.cpp.json
+compiler_moc_json_header_clean:
+	-$(DEL_FILE) moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_welcomescreen.cpp.json moc_zoomgraphicsview.cpp.json
+moc_anomalywidget.cpp.json: ../../anomalywidget.h \
+		../../api_caller.h \
+		moc_anomalywidget.cpp
+	
+
+
+moc_api_caller.cpp.json: ../../api_caller.h \
+		moc_api_caller.cpp
+	
+
+
+moc_dataservice.cpp.json: ../../dataservice.h \
+		moc_dataservice.cpp
+	
+
+
+moc_graphWindow.cpp.json: ../../graphWindow.h \
+		../../api_caller.h \
+		../../graphNode.h \
+		moc_graphWindow.cpp
+	
+
+
+moc_linegraphwindow.cpp.json: ../../linegraphwindow.h \
+		../../api_caller.h \
+		moc_linegraphwindow.cpp
+	
+
+
+moc_mainwindow.cpp.json: ../../mainwindow.h \
+		moc_mainwindow.cpp
+	
+
+
+moc_navbarwidget.cpp.json: ../../navbarwidget.h \
+		moc_navbarwidget.cpp
+	
+
+
+moc_testwindow.cpp.json: ../../testwindow.h \
+		moc_testwindow.cpp
+	
+
+
+moc_verbosewidget.cpp.json: ../../verbosewidget.h \
+		../../linegraphwindow.h \
+		../../api_caller.h \
+		moc_verbosewidget.cpp
+	
+
+
+moc_websocket_client.cpp.json: ../../websocket_client.h \
+		moc_websocket_client.cpp
+	
+
+
+moc_welcomescreen.cpp.json: ../../welcomescreen.h \
+		../../mainwindow.h \
+		moc_welcomescreen.cpp
+	
+
+
+moc_zoomgraphicsview.cpp.json: ../../zoomgraphicsview.h \
+		moc_zoomgraphicsview.cpp
+	
+
+
+compiler_rcc_make_all: qrc_qml.cpp
+compiler_rcc_clean:
+	-$(DEL_FILE) qrc_qml.cpp
+qrc_qml.cpp: ../../qml.qrc \
+		/usr/lib/qt6/rcc \
+		../../MyItem.qml \
+		../../main.qml
+	/usr/lib/qt6/rcc -name qml ../../qml.qrc -o qrc_qml.cpp
+
+compiler_moc_header_make_all: moc_anomalywidget.cpp moc_api_caller.cpp moc_dataservice.cpp moc_graphWindow.cpp moc_linegraphwindow.cpp moc_mainwindow.cpp moc_navbarwidget.cpp moc_testwindow.cpp moc_verbosewidget.cpp moc_websocket_client.cpp moc_welcomescreen.cpp moc_zoomgraphicsview.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_api_caller.cpp moc_mainwindow.cpp moc_testwindow.cpp moc_websocket_client.cpp
+	-$(DEL_FILE) moc_anomalywidget.cpp moc_api_caller.cpp moc_dataservice.cpp moc_graphWindow.cpp moc_linegraphwindow.cpp moc_mainwindow.cpp moc_navbarwidget.cpp moc_testwindow.cpp moc_verbosewidget.cpp moc_websocket_client.cpp moc_welcomescreen.cpp moc_zoomgraphicsview.cpp
+moc_anomalywidget.cpp: ../../anomalywidget.h \
+		../../api_caller.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../anomalywidget.h -o moc_anomalywidget.cpp
+
 moc_api_caller.cpp: ../../api_caller.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../api_caller.h -o moc_api_caller.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../api_caller.h -o moc_api_caller.cpp
+
+moc_dataservice.cpp: ../../dataservice.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../dataservice.h -o moc_dataservice.cpp
+
+moc_graphWindow.cpp: ../../graphWindow.h \
+		../../api_caller.h \
+		../../graphNode.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../graphWindow.h -o moc_graphWindow.cpp
+
+moc_linegraphwindow.cpp: ../../linegraphwindow.h \
+		../../api_caller.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../linegraphwindow.h -o moc_linegraphwindow.cpp
 
 moc_mainwindow.cpp: ../../mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../mainwindow.h -o moc_mainwindow.cpp
+
+moc_navbarwidget.cpp: ../../navbarwidget.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../navbarwidget.h -o moc_navbarwidget.cpp
 
 moc_testwindow.cpp: ../../testwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../testwindow.h -o moc_testwindow.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../testwindow.h -o moc_testwindow.cpp
+
+moc_verbosewidget.cpp: ../../verbosewidget.h \
+		../../linegraphwindow.h \
+		../../api_caller.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../verbosewidget.h -o moc_verbosewidget.cpp
 
 moc_websocket_client.cpp: ../../websocket_client.h \
 		moc_predefs.h \
 		/usr/lib/qt6/moc
-	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include ../../websocket_client.h -o moc_websocket_client.cpp
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../websocket_client.h -o moc_websocket_client.cpp
+
+moc_welcomescreen.cpp: ../../welcomescreen.h \
+		../../mainwindow.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../welcomescreen.h -o moc_welcomescreen.cpp
+
+moc_zoomgraphicsview.cpp: ../../zoomgraphicsview.h \
+		moc_predefs.h \
+		/usr/lib/qt6/moc
+	/usr/lib/qt6/moc $(DEFINES) --include /home/plag/Projects/networkVisualiser/edi/build/Desktop-Debug/moc_predefs.h -I/usr/lib/qt6/mkspecs/linux-g++ -I/home/plag/Projects/networkVisualiser/edi -I/usr/include/qt6 -I/usr/include/qt6/QtQuickWidgets -I/usr/include/qt6/QtQuick -I/usr/include/qt6/QtOpenGL -I/usr/include/qt6/QtWidgets -I/usr/include/qt6/QtGui -I/usr/include/qt6/QtQmlMeta -I/usr/include/qt6/QtQmlModels -I/usr/include/qt6/QtQmlWorkerScript -I/usr/include/qt6/QtQml -I/usr/include/qt6/QtQmlIntegration -I/usr/include/qt6/QtWebSockets -I/usr/include/qt6/QtNetwork -I/usr/include/qt6/QtCore -I. -I/usr/include/c++/15.2.1 -I/usr/include/c++/15.2.1/x86_64-pc-linux-gnu -I/usr/include/c++/15.2.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include-fixed -I/usr/include --output-json ../../zoomgraphicsview.h -o moc_zoomgraphicsview.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
+compiler_moc_json_source_make_all:
+compiler_moc_json_source_clean:
+compiler_moc_collect_json_make_all: edi_metatypes.json
+compiler_moc_collect_json_clean:
+	-$(DEL_FILE) edi_metatypes.json
+edi_metatypes.json: moc_.cpp.json \
+		moc_anomalywidget.cpp.json \
+		moc_api_caller.cpp.json \
+		moc_dataservice.cpp.json \
+		moc_graphWindow.cpp.json \
+		moc_linegraphwindow.cpp.json \
+		moc_mainwindow.cpp.json \
+		moc_navbarwidget.cpp.json \
+		moc_testwindow.cpp.json \
+		moc_verbosewidget.cpp.json \
+		moc_websocket_client.cpp.json \
+		moc_welcomescreen.cpp.json \
+		moc_zoomgraphicsview.cpp.json 
+	/usr/lib/qt6/moc --collect-json -o edi_metatypes.json moc_.cpp.json moc_anomalywidget.cpp.json moc_api_caller.cpp.json moc_dataservice.cpp.json moc_graphWindow.cpp.json moc_linegraphwindow.cpp.json moc_mainwindow.cpp.json moc_navbarwidget.cpp.json moc_testwindow.cpp.json moc_verbosewidget.cpp.json moc_websocket_client.cpp.json moc_welcomescreen.cpp.json moc_zoomgraphicsview.cpp.json
+
+compiler_moc_predefs_make_all: moc_predefs.h
+compiler_moc_predefs_clean:
+	-$(DEL_FILE) moc_predefs.h
+moc_predefs.h: /usr/lib/qt6/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt6/mkspecs/features/data/dummy.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
 compiler_uic_make_all: ui_mainwindow.h
@@ -1114,39 +1343,113 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_qmltyperegistrar_compiler_clean compiler_qmltyperegistrar_qmltypes_clean compiler_moc_json_header_clean compiler_rcc_clean compiler_moc_header_clean compiler_moc_collect_json_clean compiler_moc_predefs_clean compiler_uic_clean 
 
 ####### Compile
+
+anomalywidget.o: ../../anomalywidget.cpp ../../anomalywidget.h \
+		../../api_caller.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o anomalywidget.o ../../anomalywidget.cpp
 
 api_caller.o: ../../api_caller.cpp ../../api_caller.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o api_caller.o ../../api_caller.cpp
 
+dataservice.o: ../../dataservice.cpp ../../dataservice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dataservice.o ../../dataservice.cpp
+
+graphNode.o: ../../graphNode.cpp ../../graphNode.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphNode.o ../../graphNode.cpp
+
+graphWindow.o: ../../graphWindow.cpp ../../graphWindow.h \
+		../../api_caller.h \
+		../../graphNode.h \
+		../../zoomgraphicsview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o graphWindow.o ../../graphWindow.cpp
+
+linegraphwindow.o: ../../linegraphwindow.cpp ../../linegraphwindow.h \
+		../../api_caller.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o linegraphwindow.o ../../linegraphwindow.cpp
+
 main.o: ../../main.cpp ../../mainwindow.h \
-		../../testwindow.h
+		../../testwindow.h \
+		../../welcomescreen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../navbarwidget.h \
+		../../verbosewidget.h \
+		../../linegraphwindow.h \
+		../../api_caller.h \
+		../../graphWindow.h \
+		../../graphNode.h \
+		../../anomalywidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../mainwindow.cpp
+
+navbarwidget.o: ../../navbarwidget.cpp ../../navbarwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o navbarwidget.o ../../navbarwidget.cpp
 
 testwindow.o: ../../testwindow.cpp ../../testwindow.h \
 		../../websocket_client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o testwindow.o ../../testwindow.cpp
 
+verbosewidget.o: ../../verbosewidget.cpp ../../verbosewidget.h \
+		../../linegraphwindow.h \
+		../../api_caller.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o verbosewidget.o ../../verbosewidget.cpp
+
 websocket_client.o: ../../websocket_client.cpp ../../websocket_client.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o websocket_client.o ../../websocket_client.cpp
+
+welcomescreen.o: ../../welcomescreen.cpp ../../welcomescreen.h \
+		../../mainwindow.h \
+		ui_mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o welcomescreen.o ../../welcomescreen.cpp
+
+zoomgraphicsview.o: ../../zoomgraphicsview.cpp ../../zoomgraphicsview.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o zoomgraphicsview.o ../../zoomgraphicsview.cpp
+
+edi_qmltyperegistrations.o: edi_qmltyperegistrations.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o edi_qmltyperegistrations.o edi_qmltyperegistrations.cpp
+
+qrc_qml.o: qrc_qml.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
+
+moc_anomalywidget.o: moc_anomalywidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_anomalywidget.o moc_anomalywidget.cpp
 
 moc_api_caller.o: moc_api_caller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_api_caller.o moc_api_caller.cpp
 
+moc_dataservice.o: moc_dataservice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dataservice.o moc_dataservice.cpp
+
+moc_graphWindow.o: moc_graphWindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_graphWindow.o moc_graphWindow.cpp
+
+moc_linegraphwindow.o: moc_linegraphwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_linegraphwindow.o moc_linegraphwindow.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_navbarwidget.o: moc_navbarwidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_navbarwidget.o moc_navbarwidget.cpp
 
 moc_testwindow.o: moc_testwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_testwindow.o moc_testwindow.cpp
 
+moc_verbosewidget.o: moc_verbosewidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_verbosewidget.o moc_verbosewidget.cpp
+
 moc_websocket_client.o: moc_websocket_client.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_websocket_client.o moc_websocket_client.cpp
+
+moc_welcomescreen.o: moc_welcomescreen.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_welcomescreen.o moc_welcomescreen.cpp
+
+moc_zoomgraphicsview.o: moc_zoomgraphicsview.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_zoomgraphicsview.o moc_zoomgraphicsview.cpp
 
 ####### Install
 

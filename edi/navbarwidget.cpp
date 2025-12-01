@@ -73,12 +73,6 @@ void NavbarWidget::setupUI() {
         "    background-color: #00dd00;"
         "}";
 
-    m_dashboardBtn = new QPushButton("Dashboard", navbarContainer);
-    m_dashboardBtn->setStyleSheet(buttonStyle);
-    m_dashboardBtn->setProperty("activeStyle", activeButtonStyle);
-    m_dashboardBtn->setProperty("normalStyle", buttonStyle);
-    connect(m_dashboardBtn, &QPushButton::clicked, this, &NavbarWidget::onDashboardClicked);
-
     m_analyticsBtn = new QPushButton("Analytics", navbarContainer);
     m_analyticsBtn->setStyleSheet(buttonStyle);
     m_analyticsBtn->setProperty("activeStyle", activeButtonStyle);
@@ -97,7 +91,6 @@ void NavbarWidget::setupUI() {
     m_graphBtn->setProperty("normalStyle", buttonStyle);
     connect(m_graphBtn, &QPushButton::clicked, this, &NavbarWidget::onGraphClicked);
 
-    navbarLayout->addWidget(m_dashboardBtn);
     navbarLayout->addWidget(m_analyticsBtn);
     navbarLayout->addWidget(m_verboseBtn);
     navbarLayout->addWidget(m_graphBtn);
@@ -111,7 +104,7 @@ void NavbarWidget::setupUI() {
     mainLayout->addWidget(m_contentArea, 1);
 
     // Set default active button
-    setActiveButton(m_dashboardBtn);
+    setActiveButton(m_analyticsBtn);
 }
 
 void NavbarWidget::setActiveButton(QPushButton *activeBtn) {
@@ -139,11 +132,6 @@ void NavbarWidget::switchToPage(int index) {
     if (index >= 0 && index < m_contentArea->count()) {
         m_contentArea->setCurrentIndex(index);
     }
-}
-
-void NavbarWidget::onDashboardClicked() {
-    setActiveButton(m_dashboardBtn);
-    emit dashboardClicked();
 }
 
 void NavbarWidget::onAnalyticsClicked() {

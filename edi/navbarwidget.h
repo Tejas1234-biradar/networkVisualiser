@@ -24,13 +24,11 @@ public:
     void switchToPage(int index);
 
 signals:
-    void dashboardClicked();
     void analyticsClicked();
     void verboseClicked();
     void graphClicked();
 
 private slots:
-    void onDashboardClicked();
     void onAnalyticsClicked();
     void onVerboseClicked();
     void onGraphClicked();
@@ -40,7 +38,6 @@ private:
     void setActiveButton(QPushButton *activeBtn);
 
     // Navbar buttons
-    QPushButton *m_dashboardBtn;
     QPushButton *m_analyticsBtn;
     QPushButton *m_verboseBtn;
     QPushButton *m_graphBtn;

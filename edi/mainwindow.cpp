@@ -19,13 +19,11 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(navbar);
 
     // Create placeholder pages
-    createDashboardPage(navbar);
     createAnalyticsPage(navbar);
     createVerbosePage(navbar);
     createGraphPage(navbar);
 
     // Connect navbar signals
-    connect(navbar, &NavbarWidget::dashboardClicked, this, &MainWindow::switchLayoutDashboard);
     connect(navbar, &NavbarWidget::analyticsClicked, this, &MainWindow::switchLayoutAnalytics);
     connect(navbar, &NavbarWidget::verboseClicked, this, &MainWindow::switchLayoutVerbose);
     connect(navbar, &NavbarWidget::graphClicked, this, &MainWindow::switchLayoutGraph);
@@ -34,23 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_navbar = navbar;
 
     // Show dashboard by default
-    switchLayoutDashboard();
-}
-
-void MainWindow::createDashboardPage(NavbarWidget *navbar) {
-    QWidget *dashboardPage = new QWidget();
-    QVBoxLayout *layout = new QVBoxLayout(dashboardPage);
-
-    // Top Row
-    layout->addWidget(new QLabel("Public IP | Private IP | Hostname | NIC"));
-
-    // Middle Row
-    layout->addWidget(new QLabel("Network Topography Graph"));
-
-    // Bottom Box
-    layout->addWidget(new QLabel("Anomaly Detection"));
-
-    m_dashboardIndex = navbar->addPage(dashboardPage);
+    switchLayoutAnalytics();
 }
 
 void MainWindow::createAnalyticsPage(NavbarWidget *navbar) {
@@ -103,13 +85,6 @@ void MainWindow::createGraphPage(NavbarWidget *navbar) {
 
     // Add the page to navbar
     m_graphIndex = navbar->addPage(graphPage);
-}
-
-void MainWindow::switchLayoutDashboard() {
-    qDebug() << "Switching to Dashboard";
-    if (m_navbar) {
-        m_navbar->switchToPage(m_dashboardIndex);
-    }
 }
 
 void MainWindow::switchLayoutAnalytics() {

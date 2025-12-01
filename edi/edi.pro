@@ -23,6 +23,7 @@ SOURCES += \
     testwindow.cpp \
     verbosewidget.cpp \
     websocket_client.cpp \
+    welcomescreen.cpp \
     zoomgraphicsview.cpp
 
 HEADERS += \
@@ -37,6 +38,7 @@ HEADERS += \
     testwindow.h \
     verbosewidget.h \
     websocket_client.h \
+    welcomescreen.h \
     zoomgraphicsview.h
 
 FORMS += \

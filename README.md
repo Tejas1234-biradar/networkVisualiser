@@ -147,26 +147,6 @@ sudo ./sniffer | python3 app.py
 
 ---
 
-## 📁 Project Structure
-
-```
-/packet-sniffer
-│
-├── /src
-│   ├── sniffing/        # Raw packet capture
-│   ├── analysis/        # Pre-processing and formatting
-│   ├── ui/              # Qt widgets and graph components
-│   └── utils/
-│
-├── /backend
-│   ├── server.py        # Flask API
-│   └── model.pkl        # Random Forest classifier
-│
-└── README.md
-```
-
----
-
 ## 🧠 Additional Notes
 
 * Currently confirmed working on ** Linux**. Windows & macOS testing is planned..

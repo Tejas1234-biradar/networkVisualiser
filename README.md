@@ -128,24 +128,7 @@ The system operates through a clean multi-stage pipeline, separating packet capt
 
 ## 📦 Installation
 
-### **Linux / macOS**
-
-```
-mkdir build && cd build
-cmake ..
-make -j4
-```
-
-### **Windows (MSVC / MinGW)**
-
-Open in Qt Creator → Build → Run.
-
-### Flask Backend Setup
-
-```
-pip install -r requirements.txt
-python server.py
-```
+ Refer to [documentation/getting_started.md](documentation/getting_started.md) for installation.
 
 ---
 
@@ -154,7 +137,7 @@ python server.py
 1. Start the Flask backend:
 
 ```
-python server.py
+sudo ./sniffer | python3 app.py
 ```
 
 2. Launch the Qt application.

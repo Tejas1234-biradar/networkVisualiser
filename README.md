@@ -1,4 +1,4 @@
-# Cross-Platform Network Packet Sniffer
+# Real-Time Network Visualization and Packet Analysis Tool
 
 A powerful, currently tested on **Linux** (planned support for Windows & macOS) network packet analysis tool built using **Qt (C++)** with a **Flask-based backend** for extended processing. The project focuses on deep packet inspection, real-time network visualization, traceroute mapping, and anomaly detection using machine learning.
 
